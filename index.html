@@ -1,0 +1,1519 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lunary Studios &mdash; Art, issued by moon phase</title>
+<meta name="description" content="Lunary Studios. Paper every full moon, one tee in your birth month. Art, apparel and correspondence from one studio.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,400..900,0..100,0..1&family=Archivo:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+
+  :root{--cream:#FAF5E9;--cream-2:#F3ECDB;--ink:#0C0B0A;--ash:#6E6A60;--ash-2:#9C9688;--gold:#F9D337;--cobalt:#3A65F5;--orchid:#B65AEB;--rule:rgba(12,11,10,.14);--pad:clamp(20px,5vw,72px);--maxw:1440px;--display:"Fraunces","Times New Roman",serif;--body:"Archivo","Helvetica Neue",Arial,sans-serif;--mono:"Space Mono",ui-monospace,monospace;--err:#B3261E}
+
+  *,*::before,*::after{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:16px;
+    line-height:1.6;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+  h1,h2,h3{margin:0;font-family:var(--display);font-weight:800;font-variation-settings:"opsz" 144,"SOFT" 20,"WONK" 1;letter-spacing:-.02em;line-height:.94}
+  p{margin:0}
+  :focus-visible{outline:2px solid var(--cobalt);outline-offset:3px;border-radius:2px}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
+
+  
+  .sky{
+    position:absolute;
+    inset:0 0 auto 0;
+    height:min(1100px,120vh);
+    z-index:0;
+    pointer-events:none;
+    background:
+      radial-gradient(58% 52% at 4% 4%, rgba(249,211,55,.95) 0%, rgba(249,211,55,0) 62%),
+      radial-gradient(54% 48% at 84% 16%, rgba(58,101,245,.88) 0%, rgba(58,101,245,0) 64%),
+      radial-gradient(52% 44% at 68% 62%, rgba(213,138,242,.72) 0%, rgba(213,138,242,0) 66%),
+      radial-gradient(46% 40% at 14% 58%, rgba(182,90,235,.34) 0%, rgba(182,90,235,0) 70%);
+    filter:saturate(1.05);
+  }
+  .sky::after{
+    content:"";
+    position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(250,245,233,0) 55%,var(--cream) 92%);
+  }
+
+  
+  .nav{
+    position:relative;z-index:3;
+    display:flex;align-items:center;justify-content:space-between;gap:24px;
+    padding:26px var(--pad);
+    max-width:var(--maxw);margin:0 auto;
+  }
+  
+  .nav::before{
+    content:"";
+    position:absolute;
+    top:-10px;right:-16px;bottom:-10px;
+    width:min(620px,58%);
+    z-index:-1;
+    pointer-events:none;
+    background:linear-gradient(90deg, rgba(250,245,233,0) 0%, rgba(250,245,233,.48) 40%, rgba(250,245,233,.66) 100%);
+    filter:blur(12px);
+    border-radius:70px;
+  }
+  .brand{
+    font-family:var(--display);
+    font-weight:900;
+    font-variation-settings:"opsz" 144,"SOFT" 0,"WONK" 1;
+    font-size:clamp(24px,2.4vw,34px);
+    letter-spacing:-.01em;
+    line-height:1;
+  }
+  .brand span{color:var(--cobalt)}
+  .menu{display:flex;gap:clamp(14px,2.2vw,34px);font-size:14px;letter-spacing:.01em}
+  .menu a{padding:6px 0;border-bottom:1px solid transparent;transition:border-color .25s ease}
+  .menu a:hover{border-color:var(--ink)}
+  .cart{
+    display:flex;align-items:center;gap:9px;
+    font-size:13px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.08em;
+    border:1px solid var(--ink);border-radius:999px;padding:7px 8px 7px 16px;
+    background:transparent;
+    transition:background .25s ease,color .25s ease;
+  }
+  .cart:hover{background:var(--ink);color:var(--cream)}
+  .cart b{
+    display:grid;place-items:center;width:22px;height:22px;border-radius:50%;
+    background:var(--ink);color:var(--cream);font-size:11px;font-weight:400;
+  }
+  .cart:hover b{background:var(--cream);color:var(--ink)}
+
+  
+  .hero{position:relative;z-index:2;padding:clamp(8px,3vw,40px) var(--pad) clamp(40px,6vw,90px);max-width:var(--maxw);margin:0 auto}
+  .arches{
+    display:flex;align-items:flex-end;justify-content:space-between;
+    gap:clamp(10px,2.4vw,34px);
+    margin-bottom:clamp(30px,5vw,64px);
+  }
+  .arches figure{
+    margin:0;flex:1 1 0;overflow:hidden;background:var(--cream-2);
+    box-shadow:0 14px 34px rgba(12,11,10,.13);
+  }
+  .arches img{width:100%;height:100%;object-fit:cover;filter:saturate(.92) contrast(1.03)}
+  .a-arch{border-radius:999px 999px 0 0;height:clamp(150px,26vw,340px)}
+  .a-oval{border-radius:50%;height:clamp(150px,30vw,386px)}
+  .a-arch-sm{border-radius:999px 999px 0 0;height:clamp(120px,20vw,262px)}
+  .a-circle{border-radius:50%;aspect-ratio:1;height:clamp(110px,17vw,222px);align-self:center}
+
+  .hero h1{
+    font-size:clamp(44px,10.4vw,168px);
+    max-width:15ch;
+  }
+  .hero h1 em{font-style:italic;font-variation-settings:"opsz" 144,"SOFT" 60,"WONK" 1;font-weight:500}
+  .hero-foot{
+    display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:22px;
+    margin-top:clamp(24px,4vw,44px);
+  }
+  .stamp{
+    font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--ash);
+  }
+  .stamp strong{color:var(--ink);font-weight:400}
+  .btn{
+    display:inline-flex;align-items:center;gap:12px;
+    font-family:var(--mono);font-size:13px;text-transform:uppercase;letter-spacing:.1em;
+    background:var(--ink);color:var(--cream);border-radius:999px;padding:15px 26px;
+    transition:transform .25s ease,background .25s ease;
+  }
+  .btn:hover{transform:translateY(-2px);background:var(--cobalt)}
+  .btn i{font-style:normal;transition:transform .25s ease}
+  .btn:hover i{transform:translateX(3px)}
+
+  
+  .cycle{
+    position:relative;z-index:2;
+    border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+    background:rgba(250,245,233,.6);
+    backdrop-filter:blur(3px);
+  }
+  .cycle-in{
+    max-width:var(--maxw);margin:0 auto;padding:clamp(28px,4vw,46px) var(--pad);
+    display:grid;grid-template-columns:repeat(8,1fr);gap:clamp(8px,1.6vw,22px);
+  }
+  .phase{display:flex;flex-direction:column;gap:11px;align-items:flex-start}
+  .disc{
+    --lit:0;
+    width:clamp(26px,3.4vw,44px);aspect-ratio:1;border-radius:50%;
+    border:1px solid var(--ink);
+    background:
+      linear-gradient(90deg, var(--ink) 0 calc(var(--lit) * 1%), var(--cream) calc(var(--lit) * 1%) 100%);
+    position:relative;
+  }
+  .phase small{
+    font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--ash);line-height:1.5;
+  }
+  .phase b{font-family:var(--display);font-weight:600;font-size:clamp(12px,1.15vw,15px);letter-spacing:-.01em;line-height:1.15}
+  .phase.now .disc{box-shadow:0 0 0 5px rgba(249,211,55,.5)}
+  .phase.now small{color:#1E2A94;font-weight:700}
+
+  
+  #page-home section{position:relative;z-index:2;padding:clamp(56px,8vw,120px) 0}
+  .sec-head{
+    max-width:var(--maxw);margin:0 auto clamp(30px,4vw,54px);padding:0 var(--pad);
+  }
+  .sec-head h2{font-size:clamp(34px,5.6vw,84px);line-height:.92}
+  .sec-head p{max-width:52ch;margin-top:16px;color:var(--ash);font-size:15px}
+  .right{text-align:right;margin-left:auto}
+  .right p{margin-left:auto}
+
+  .grid{
+    max-width:var(--maxw);margin:0 auto;padding:0 var(--pad);
+    display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.6vw,40px) clamp(16px,2vw,30px);
+  }
+  .card{display:flex;flex-direction:column;gap:14px;transition:transform .35s cubic-bezier(.2,.7,.3,1)}
+  .card:hover{transform:translateY(-6px)}
+  .plate{
+    background:#fff;
+    border:1px solid rgba(12,11,10,.1);
+    padding:clamp(16px,2.2vw,30px);
+    box-shadow:0 12px 26px rgba(12,11,10,.09);
+    display:grid;place-items:center;
+  }
+  .plate .inner{aspect-ratio:4/5;width:100%;overflow:hidden;background:var(--cream-2)}
+  .plate img{width:100%;height:100%;object-fit:cover;filter:saturate(.9)}
+  .cat{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.11em;color:var(--ash)}
+  .card h3{font-size:clamp(19px,1.6vw,25px);line-height:1.08;letter-spacing:-.015em}
+  .price{font-family:var(--mono);font-size:13px;display:flex;gap:12px;align-items:baseline}
+  .price s{color:var(--ash-2)}
+  .add{
+    margin-top:2px;align-self:flex-start;font-size:12.5px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.09em;
+    border-bottom:1px solid var(--ink);padding-bottom:3px;
+  }
+  .add:hover{color:var(--cobalt);border-color:var(--cobalt)}
+
+  
+  .split{
+    display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(30px,5vw,86px);align-items:start;
+    max-width:var(--maxw);margin:0 auto;padding:0 var(--pad);
+  }
+  .split h2{font-size:clamp(32px,4.6vw,74px);line-height:.95;max-width:14ch}
+  .split .lede{margin-top:24px;max-width:46ch;font-size:clamp(15px,1.15vw,17px);color:#2A2823}
+  .split .lede + .lede{margin-top:14px;color:var(--ash)}
+  .link{
+    display:inline-block;margin-top:26px;font-family:var(--mono);font-size:13px;text-transform:uppercase;letter-spacing:.1em;
+    border-bottom:1px solid var(--ink);padding-bottom:4px;
+  }
+  .link:hover{color:var(--cobalt);border-color:var(--cobalt)}
+  .vow{
+    margin-top:clamp(36px,6vw,74px);
+    font-family:var(--display);font-weight:800;font-variation-settings:"opsz" 144,"SOFT" 30,"WONK" 1;
+    font-size:clamp(24px,3.2vw,50px);line-height:1.02;letter-spacing:-.02em;max-width:20ch;
+  }
+  .oval{
+    border-radius:50%/46%;
+    overflow:hidden;
+    aspect-ratio:3/4.4;
+    box-shadow:0 26px 60px rgba(12,11,10,.18);
+  }
+  .oval img{width:100%;height:100%;object-fit:cover;filter:saturate(.92) contrast(1.02)}
+
+  
+  .posts{
+    max-width:var(--maxw);margin:0 auto;padding:0 var(--pad);
+    display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,42px);
+  }
+  .post{display:flex;flex-direction:column;gap:16px;border-top:1px solid var(--rule);padding-top:20px}
+  .post .thumb{aspect-ratio:16/10;overflow:hidden;background:var(--cream-2)}
+  .post .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.3,1);filter:saturate(.9)}
+  .post:hover .thumb img{transform:scale(1.04)}
+  .post h3{font-size:clamp(18px,1.5vw,23px);line-height:1.12}
+  .post p{font-size:14px;color:var(--ash)}
+
+  
+  footer{position:relative;z-index:2;margin-top:clamp(50px,7vw,110px);padding-bottom:44px;overflow:hidden}
+  .glow{
+    position:absolute;right:-8%;bottom:-38%;width:min(820px,86vw);aspect-ratio:1;
+    background:radial-gradient(circle at 40% 40%, rgba(213,138,242,.5), rgba(58,101,245,.28) 45%, rgba(213,138,242,0) 72%);
+    filter:blur(28px);z-index:-1;
+  }
+  .f-top{
+    border-top:1px solid var(--rule);
+    max-width:var(--maxw);margin:0 auto;padding:clamp(34px,5vw,64px) var(--pad) 0;
+    display:grid;grid-template-columns:1.4fr .6fr .6fr;gap:clamp(24px,4vw,60px);
+  }
+  .f-top h2{font-size:clamp(30px,4vw,62px);max-width:16ch}
+  .f-top .sign{
+    margin-top:22px;display:flex;gap:10px;flex-wrap:wrap;
+  }
+  .f-top input{
+    font-family:var(--mono);font-size:13px;background:transparent;border:1px solid var(--ink);
+    border-radius:999px;padding:14px 20px;min-width:230px;color:var(--ink);
+  }
+  .f-top input::placeholder{color:var(--ash-2)}
+  .f-top button{
+    font-family:var(--mono);font-size:13px;text-transform:uppercase;letter-spacing:.1em;
+    background:var(--ink);color:var(--cream);border:0;border-radius:999px;padding:15px 24px;cursor:pointer;
+    transition:background .25s ease;
+  }
+  .f-top button:hover{background:var(--cobalt)}
+  .f-col{padding-top:8px}
+  .f-col h4{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:#332F28;margin:0 0 14px;font-weight:700}
+  .f-col a{display:block;font-size:14.5px;padding:5px 0;color:#0C0B0A;border-bottom:1px solid transparent;width:fit-content}
+  .f-col a:hover{border-color:var(--ink)}
+  .colophon{
+    max-width:var(--maxw);margin:clamp(40px,5vw,70px) auto 0;padding:22px var(--pad) 0;
+    border-top:1px solid var(--rule);
+    display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;
+    font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--ash);
+  }
+
+  
+  .rv{opacity:1}
+
+  
+  @media (max-width:1080px){
+    .cycle-in{grid-template-columns:repeat(4,1fr);gap:26px 18px}
+  }
+  @media (max-width:900px){
+    .nav{flex-wrap:wrap;row-gap:16px}
+    .nav::before{left:-16px;right:-16px;width:auto;top:-6px;bottom:-6px;border-radius:0}
+    .menu{order:3;width:100%;justify-content:space-between;gap:10px;font-size:13px;border-top:1px solid var(--rule);padding-top:14px}
+    .grid,.posts{grid-template-columns:repeat(2,1fr)}
+    .split{grid-template-columns:1fr}
+    .oval{aspect-ratio:3/3.4;order:-1}
+    .f-top{grid-template-columns:1fr 1fr}
+    .right{text-align:left;margin-left:0}
+    .right p{margin-left:0}
+  }
+  @media (max-width:620px){
+    .grid,.posts{grid-template-columns:1fr}
+    .arches{gap:8px}
+    .a-oval,.a-circle{border-radius:999px 999px 0 0;aspect-ratio:auto}
+    .cycle-in{grid-template-columns:repeat(2,1fr)}
+    .f-top{grid-template-columns:1fr}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .rv{opacity:1;transform:none;transition:none}
+    .card,.post .thumb img,.btn{transition:none}
+  }
+
+/* ================= CORRESPONDENCE PAGE ================= */
+.menu a[aria-current="page"]{border-color:var(--ink)}
+.page-head{position:relative;z-index:2;max-width:var(--maxw);margin:0 auto;padding:clamp(10px,3vw,36px) var(--pad) clamp(30px,4vw,54px)}
+.eyebrow{font-family:var(--mono);font-size:11.5px;text-transform:uppercase;letter-spacing:.14em;color:var(--ash)}
+.eyebrow strong{color:var(--ink);font-weight:400}
+.page-head h1{margin-top:18px;font-size:clamp(40px,7.4vw,118px);max-width:16ch}
+.page-head h1 em{font-style:italic;font-variation-settings:"opsz" 144,"SOFT" 60,"WONK" 1;font-weight:500}
+.page-head .sub{margin-top:20px;max-width:58ch;font-size:clamp(15px,1.2vw,17.5px);color:#2A2823}
+.flow{position:relative;z-index:2;max-width:var(--maxw);margin:0 auto;padding:0 var(--pad) clamp(40px,6vw,90px);display:grid;grid-template-columns:minmax(0,.86fr) minmax(0,1.14fr);gap:clamp(26px,4.4vw,74px);align-items:start}
+.lede-block{position:sticky;top:34px}
+.lede-block h2{font-size:clamp(24px,2.5vw,38px);line-height:1.04;max-width:18ch}
+.lede-block .copy{margin-top:20px;max-width:40ch;font-size:15.5px;color:#2A2823}
+.lede-block .copy + .copy{margin-top:14px;color:var(--ash);font-size:14.5px}
+.slip{margin-top:clamp(26px,3.4vw,42px);border:1px solid var(--rule);background:rgba(250,245,233,.62);backdrop-filter:blur(3px);padding:22px 24px 24px}
+.slip h3{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--ash);font-weight:400;margin-bottom:14px}
+.slip dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:9px 18px;font-size:14px}
+.slip dt{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.1em;color:var(--ash-2);padding-top:3px}
+.slip dd{margin:0;text-align:right;font-weight:500}
+.slip dd.mute{color:var(--ash-2);font-weight:400}
+.slip .total{margin-top:16px;padding-top:14px;border-top:1px solid var(--rule);display:flex;justify-content:space-between;align-items:baseline}
+.slip .total b{font-family:var(--display);font-weight:800;font-size:26px;letter-spacing:-.02em}
+.slip .total span{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--ash)}
+.smallprint{margin-top:20px;font-size:12.5px;color:var(--ash);max-width:40ch;line-height:1.7}
+.letter{background:#FFFDF7;border:1px solid rgba(12,11,10,.12);box-shadow:0 24px 60px rgba(12,11,10,.1);padding:clamp(22px,3vw,44px)}
+.prog{display:grid;gap:10px;grid-auto-flow:column;grid-auto-columns:1fr;padding-bottom:clamp(20px,2.6vw,30px);margin-bottom:clamp(22px,2.8vw,34px);border-bottom:1px solid var(--rule)}
+.prog .p{display:flex;flex-direction:column;gap:9px}
+.prog .pd{width:clamp(24px,2.6vw,34px);aspect-ratio:1;border-radius:50%;border:1px solid var(--ink);background:var(--cream)}
+.prog .p[data-state="done"] .pd{background:var(--ink)}
+.prog .p[data-state="now"] .pd{background:linear-gradient(90deg,var(--ink) 0 50%,var(--cream) 50% 100%);box-shadow:0 0 0 4px rgba(249,211,55,.55)}
+.prog .pl{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.09em;color:var(--ash-2);line-height:1.5}
+.prog .p[data-state="now"] .pl,.prog .p[data-state="done"] .pl{color:var(--ink)}
+.step{display:none}
+.step.active{display:block;animation:stepIn .38s cubic-bezier(.2,.7,.3,1) both}
+@keyframes stepIn{
+  from{transform:translateY(9px)}
+  to{transform:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .step.active{animation:none}
+}
+.step h2{font-size:clamp(25px,2.7vw,40px);line-height:1.02;max-width:22ch}
+.step .hint{margin-top:12px;font-size:14.5px;color:var(--ash);max-width:52ch}
+.dispatch{
+    display:inline-flex;align-items:center;gap:10px;margin-top:16px;
+    font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;
+    border:1px solid var(--ink);border-radius:999px;padding:7px 14px;
+  }
+.dispatch .dot{width:9px;height:9px;border-radius:50%;background:var(--ink)}
+.tiers{margin-top:clamp(22px,2.8vw,32px);display:flex;flex-direction:column;gap:12px}
+.tier{position:relative;display:block;cursor:pointer;border:1px solid rgba(12,11,10,.16);background:transparent;padding:20px 22px;transition:border-color .25s ease,background .25s ease,transform .25s ease}
+.tier:hover{border-color:var(--ink);transform:translateX(3px)}
+.tier input{position:absolute;opacity:0;width:0;height:0}
+.tier:has(input:focus-visible){outline:2px solid var(--cobalt);outline-offset:3px}
+.tier:has(input:checked){border-color:var(--ink);background:linear-gradient(180deg,rgba(249,211,55,.16),rgba(249,211,55,0));box-shadow:inset 0 0 0 1px var(--ink)}
+.tier-top{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
+.tier-name{font-family:var(--display);font-weight:800;font-size:clamp(19px,1.7vw,25px);letter-spacing:-.015em;line-height:1.1}
+.tier-price{font-family:var(--mono);font-size:14px;white-space:nowrap}
+.tier-cad{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.11em;color:var(--ash);margin-top:7px}
+.tier-desc{margin-top:12px;font-size:14px;color:#3A372F;max-width:50ch}
+.tier-price small{font-size:11px;color:var(--ash);letter-spacing:.06em;margin-left:2px}
+.tier-tag{display:inline-block;margin-top:12px;font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.11em;border:1px solid var(--ink);border-radius:999px;padding:4px 11px}
+.tier:has(input:checked) .tier-tag{background:var(--ink);color:var(--cream)}
+.fields{margin-top:clamp(22px,2.8vw,32px);display:grid;grid-template-columns:1fr 1fr;gap:18px 20px}
+.fld{display:flex;flex-direction:column;gap:8px}
+.fld.wide{grid-column:1/-1}
+.fld label{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.11em;color:var(--ash)}
+.fld input{font-family:var(--body);font-size:15px;color:var(--ink);background:transparent;border:1px solid rgba(12,11,10,.22);padding:14px 15px;transition:border-color .2s ease,box-shadow .2s ease}
+.fld input::placeholder{color:var(--ash-2)}
+.fld input:hover{border-color:var(--ash)}
+.fld input:focus{outline:none;border-color:var(--ink);box-shadow:0 0 0 3px rgba(249,211,55,.45)}
+.fld input[aria-invalid="true"]{border-color:var(--err);box-shadow:0 0 0 3px rgba(179,38,30,.14)}
+.err{font-size:12.5px;color:var(--err);display:none}
+.err.on{display:block}
+.sizes{margin-top:clamp(22px,2.8vw,32px);display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.sz{position:relative;cursor:pointer}
+.sz input{position:absolute;opacity:0;width:0;height:0}
+.sz span{
+    display:grid;place-items:center;padding:16px 8px;
+    border:1px solid rgba(12,11,10,.22);
+    font-family:var(--mono);font-size:13px;letter-spacing:.08em;
+    transition:border-color .2s ease,background .2s ease,transform .2s ease;
+  }
+.sz:hover span{border-color:var(--ink);transform:translateY(-2px)}
+.sz:has(input:focus-visible) span{outline:2px solid var(--cobalt);outline-offset:3px}
+.sz:has(input:checked) span{border-color:var(--ink);background:var(--ink);color:var(--cream);box-shadow:inset 0 0 0 1px var(--ink)}
+.size-note{margin-top:16px;font-size:13px;color:var(--ash)}
+.field-label{margin-top:clamp(24px,3vw,34px);font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.11em;color:var(--ash)}
+.months{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.mo{position:relative;cursor:pointer}
+.mo input{position:absolute;opacity:0;width:0;height:0}
+.mo span{display:grid;place-items:center;padding:15px 6px;border:1px solid rgba(12,11,10,.22);font-family:var(--mono);font-size:12px;letter-spacing:.06em;transition:border-color .2s ease,background .2s ease,transform .2s ease}
+.mo:hover span{border-color:var(--ink);transform:translateY(-2px)}
+.mo:has(input:focus-visible) span{outline:2px solid var(--cobalt);outline-offset:3px}
+.mo:has(input:checked) span{border-color:var(--ink);background:var(--ink);color:var(--cream);box-shadow:inset 0 0 0 1px var(--ink)}
+.review{margin-top:clamp(22px,2.8vw,32px);border-top:1px solid var(--rule)}
+.rv-row{display:flex;justify-content:space-between;gap:20px;padding:15px 0;border-bottom:1px solid var(--rule)}
+.rv-row dt{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.11em;color:var(--ash);padding-top:3px;max-width:38%}
+.rv-row dd{margin:0;text-align:right;font-size:15px;font-weight:500;max-width:58%}
+.rv-row dd small{display:block;font-weight:400;color:var(--ash);font-size:13px;margin-top:3px}
+.letter-foot{margin-top:clamp(26px,3.2vw,38px);padding-top:clamp(20px,2.6vw,28px);border-top:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.back{font-family:var(--mono);font-size:12.5px;text-transform:uppercase;letter-spacing:.1em;border-bottom:1px solid transparent;padding-bottom:3px;cursor:pointer;background:none;border-left:0;border-right:0;border-top:0;color:var(--ink)}
+.back:hover{border-bottom-color:var(--ink)}
+.back[hidden]{display:none}
+.go{display:inline-flex;align-items:center;gap:12px;font-family:var(--mono);font-size:13px;text-transform:uppercase;letter-spacing:.1em;background:var(--ink);color:var(--cream);border:0;border-radius:999px;padding:16px 28px;cursor:pointer;transition:transform .25s ease,background .25s ease}
+.go:hover{transform:translateY(-2px);background:var(--cobalt)}
+.go i{font-style:normal;transition:transform .25s ease}
+.go:hover i{transform:translateX(3px)}
+.step-count{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--ash-2)}
+.done{display:none;text-align:left}
+.done:focus,.done:focus-visible{outline:none}
+.done.active{display:block;animation:stepIn .38s cubic-bezier(.2,.7,.3,1) both}
+.seal{width:clamp(74px,8vw,106px);aspect-ratio:1;border-radius:50%;border:1px solid var(--ink);background:radial-gradient(circle at 34% 30%, #FFF6D8, var(--gold) 62%, #E0AE1F);display:grid;place-items:center;font-family:var(--display);font-weight:900;font-size:clamp(22px,2.4vw,32px);letter-spacing:-.03em;box-shadow:0 10px 26px rgba(12,11,10,.14);margin-bottom:26px}
+.done h2{font-size:clamp(30px,3.6vw,54px);line-height:.98;max-width:20ch}
+.done .copy{margin-top:18px;font-size:15.5px;color:#2A2823;max-width:50ch}
+.done .copy + .copy{margin-top:12px;color:var(--ash);font-size:14.5px;max-width:50ch}
+@media (max-width:980px){
+  .flow{grid-template-columns:1fr}
+  .lede-block{position:static}
+}
+@media (max-width:620px){
+  .fields{grid-template-columns:1fr}
+  .sizes{grid-template-columns:repeat(3,1fr)}
+  .months{grid-template-columns:repeat(4,1fr)}
+  .letter-foot{gap:22px}
+  .go{width:100%;justify-content:center}
+}
+@media (prefers-reduced-motion:reduce){
+  .tier,.sz span,.go,.step.active,.done.active{transition:none;animation:none}
+}
+  /* ---------- merged single-file: page switching ---------- */
+  .page[hidden]{display:none!important}
+
+
+/* ================= SHOP / ABOUT / BLOG PAGES ================= */
+#page-shop section,#page-about section,#page-blog section{position:relative;z-index:2;padding:clamp(56px,8vw,120px) 0}
+#page-blog .feat{position:relative;z-index:2}
+#page-blog .feat::before{
+  content:"";position:absolute;left:calc(var(--pad) * -0.5);right:calc(var(--pad) * -0.5);top:-50px;bottom:-40px;z-index:-1;
+  background:linear-gradient(180deg,rgba(250,245,233,.96) 0%,rgba(250,245,233,.9) 60%,rgba(250,245,233,0) 100%);
+  filter:blur(16px);pointer-events:none;
+}
+#page-shop .page-head::before,#page-about .page-head::before,#page-blog .page-head::before{
+  content:"";position:absolute;left:0;right:0;top:-40px;bottom:-30px;z-index:-1;
+  background:linear-gradient(180deg,rgba(250,245,233,.95) 0%,rgba(250,245,233,.88) 58%,rgba(250,245,233,0) 100%);
+  filter:blur(16px);pointer-events:none;
+}
+.grid>[hidden],.posts>[hidden]{display:none!important}
+.more{max-width:var(--maxw);margin:clamp(28px,3.6vw,46px) auto 0;padding:0 var(--pad)}
+.more .link{margin-top:0}
+
+.filters{max-width:var(--maxw);margin:0 auto clamp(26px,3.4vw,42px);padding:0 var(--pad);display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.chip{font-family:var(--mono);font-size:11.5px;text-transform:uppercase;letter-spacing:.1em;background:none;border:1px solid rgba(12,11,10,.24);border-radius:999px;padding:8px 15px;cursor:pointer;color:var(--ink);transition:border-color .22s ease,background .22s ease,color .22s ease}
+.chip:hover{border-color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+.chip:focus-visible{outline:2px solid var(--cobalt);outline-offset:2px}
+.tally{margin-left:auto;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--ash)}
+
+.badge{display:inline-block;font-family:var(--mono);font-size:9.5px;text-transform:uppercase;letter-spacing:.12em;border:1px solid var(--ink);border-radius:999px;padding:3px 9px;white-space:nowrap}
+.badge.few{border-color:var(--gold);background:var(--gold);color:var(--ink)}
+.cat-row{display:flex;justify-content:space-between;align-items:center;gap:12px}
+
+.cloth{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad);display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(28px,5vw,80px);align-items:center}
+.cloth .shot{overflow:hidden;background:var(--cream-2);aspect-ratio:4/5;box-shadow:0 26px 60px rgba(12,11,10,.16)}
+.cloth .shot img{width:100%;height:100%;object-fit:cover;filter:saturate(.9)}
+.cloth h2{font-size:clamp(30px,4.2vw,68px);line-height:.95;max-width:15ch}
+.cloth .lede{margin-top:22px;max-width:48ch;font-size:clamp(15px,1.15vw,17px);color:#2A2823}
+.cloth .lede + .lede{margin-top:13px;color:var(--ash)}
+.cloth .buy{margin-top:28px;display:flex;align-items:flex-end;gap:22px;flex-wrap:wrap}
+.tag-price{font-family:var(--display);font-weight:800;font-size:clamp(30px,3vw,44px);letter-spacing:-.02em;line-height:1}
+.tag-price small{display:block;margin-top:7px;font-family:var(--mono);font-size:10.5px;font-weight:400;text-transform:uppercase;letter-spacing:.1em;color:var(--ash)}
+.sizes-inline{display:flex;flex-wrap:wrap;gap:7px;margin-top:22px}
+.sizes-inline span{font-family:var(--mono);font-size:11px;letter-spacing:.08em;border:1px solid rgba(12,11,10,.22);padding:7px 11px}
+
+.arch{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad);border-top:1px solid var(--rule)}
+.arch-row{display:grid;grid-template-columns:auto 1.6fr 1.1fr auto;gap:clamp(14px,3vw,40px);align-items:baseline;padding:20px 0;border-bottom:1px solid var(--rule)}
+.arch-row .no{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--ash)}
+.arch-row h3{font-size:clamp(18px,1.6vw,24px);line-height:1.1}
+.arch-row .meta{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--ash)}
+.arch-row .p{font-family:var(--mono);font-size:13px;text-align:right;white-space:nowrap}
+.arch-row .p s{color:var(--ash-2)}
+.arch-row .p.out{color:var(--ash-2)}
+
+.craft{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad);display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(20px,2.6vw,40px)}
+.craft-step{border-top:1px solid var(--ink);padding-top:20px}
+.craft-step .n{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--ash)}
+.craft-step h3{margin-top:12px;font-size:clamp(19px,1.7vw,26px);line-height:1.08}
+.craft-step p{margin-top:12px;font-size:14.5px;color:var(--ash)}
+
+.ledger{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad);display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(30px,6vw,90px)}
+.ledger-row{display:grid;grid-template-columns:minmax(0,.78fr) 1.22fr;gap:18px;padding:16px 0;border-bottom:1px solid var(--rule);align-items:baseline}
+.ledger-row dt{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.11em;color:var(--ash-2)}
+.ledger-row dd{margin:0;font-size:15px;color:#2A2823}
+
+.band{position:relative;z-index:2;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);background:linear-gradient(180deg,rgba(249,211,55,.15),rgba(249,211,55,0))}
+.band-in{max-width:var(--maxw);margin:0 auto;padding:clamp(46px,7vw,96px) var(--pad);display:grid;grid-template-columns:1.25fr .75fr;gap:clamp(26px,5vw,70px);align-items:end}
+.band h2{font-size:clamp(30px,4.6vw,78px);line-height:.94;max-width:17ch}
+.band p{font-size:15px;color:#2A2823;max-width:46ch}
+.band .btn{margin-top:26px}
+
+.feat{max-width:var(--maxw);margin:0 auto clamp(40px,6vw,80px);padding:0 var(--pad);display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(26px,4.4vw,72px);align-items:center}
+.feat .shot{aspect-ratio:16/11;overflow:hidden;background:var(--cream-2);box-shadow:0 24px 56px rgba(12,11,10,.15)}
+.feat .shot img{width:100%;height:100%;object-fit:cover;filter:saturate(.92)}
+.feat h2{margin-top:16px;font-size:clamp(28px,3.6vw,58px);line-height:.98;max-width:18ch}
+.feat .dek{margin-top:18px;font-size:clamp(15px,1.15vw,17px);color:#2A2823;max-width:44ch}
+.feat .meta{margin-top:20px;font-family:var(--mono);font-size:11.5px;text-transform:uppercase;letter-spacing:.1em;color:var(--ash)}
+
+@media (max-width:980px){
+  .cloth{grid-template-columns:1fr}
+  .cloth .shot{aspect-ratio:16/12}
+  .feat{grid-template-columns:1fr;gap:26px}
+  .feat .shot{aspect-ratio:16/10}
+  .craft{grid-template-columns:1fr 1fr}
+  .ledger{grid-template-columns:1fr}
+  .band-in{grid-template-columns:1fr;align-items:start}
+}
+@media (max-width:620px){
+  .craft{grid-template-columns:1fr}
+  .arch-row{grid-template-columns:1fr;gap:9px}
+  .arch-row .p{text-align:left}
+  .filters{gap:8px}
+  .tally{margin-left:0;width:100%}
+  .cloth .buy{gap:18px}
+}
+</style>
+</head>
+<body>
+
+<div class="sky" aria-hidden="true"></div>
+
+<header class="nav">
+  <a class="brand" href="#home" data-page="home">LUNARY<span>.</span></a>
+  <nav class="menu">
+    <a href="#home" data-page="home" aria-current="page">Home</a>
+    <a href="https://shop.lunarystudio.co">Shop</a>
+    <a href="#about" data-page="about">About</a>
+    <a href="#blog" data-page="blog">Blog</a>
+  </nav>
+</header>
+
+<div class="page" id="page-home">
+  <main>
+  <!-- ============ HERO ============ -->
+  <section class="hero" style="padding-top:0">
+    <div class="arches">
+      <figure class="a-arch"><img src="https://sspark.genspark.ai/i/AI37xmsY8g3QtlI7?width=2560" alt="Celestial illustration of a moon goddess amid star fields"></figure>
+      <figure class="a-oval"><img src="https://sspark.genspark.ai/i/dMIMP1GPxLoejeN2?width=2560" alt="Antique star chart of the northern constellations"></figure>
+      <figure class="a-arch-sm"><img src="https://sspark.genspark.ai/i/s3JqPnO3AfyfQGtu?width=2560" alt="Crescent moon goddess illustration in a vintage hand"></figure>
+      <figure class="a-circle"><img src="https://sspark.genspark.ai/i/ZBj5LA3Dz6KdGY0P?width=2560" alt="Victorian aerialist poster illustration"></figure>
+    </div>
+
+    <h1 class="rv" data-cms="hero_title">The sky keeps a calendar. <em>We post it to you.</em></h1>
+
+    <div class="hero-foot">
+      <p class="stamp">Lunary Studios &nbsp;·&nbsp; <strong>Issue 07</strong> leaves the studio on the full moon</p>
+      <a class="btn" href="#corr" data-page="correspondence">Join the correspondence <i>&rarr;</i></a>
+    </div>
+  </section>
+
+  <!-- ============ SIGNATURE: MOON CYCLE ============ -->
+  <div class="cycle" id="correspondence">
+    <div class="cycle-in">
+      <div class="phase"><div class="disc" style="--lit:100"></div><small>New</small><b>The studio goes quiet</b></div>
+      <div class="phase"><div class="disc" style="--lit:82"></div><small>Waxing crescent</small><b>Sketches, first marks</b></div>
+      <div class="phase"><div class="disc" style="--lit:50"></div><small>First quarter</small><b>The press proofs</b></div>
+      <div class="phase now"><div class="disc" style="--lit:28"></div><small>Now &nbsp;·&nbsp; waxing gibbous</small><b>Envelopes addressed</b></div>
+      <div class="phase"><div class="disc" style="--lit:0"></div><small>Full moon</small><b>Mail leaves the studio</b></div>
+      <div class="phase"><div class="disc" style="--lit:22"></div><small>Waning gibbous</small><b>Replies arrive</b></div>
+      <div class="phase"><div class="disc" style="--lit:50"></div><small>Last quarter</small><b>The archive is bound</b></div>
+      <div class="phase"><div class="disc" style="--lit:80"></div><small>Waning crescent</small><b>Rest, and repeat</b></div>
+    </div>
+  </div>
+
+  <!-- ============ EDITIONS ============ -->
+  <section id="editions">
+    <div class="sec-head right">
+      <h2>This month&rsquo;s editions</h2>
+      <p>Every envelope holds one signed work, the chart for the weeks ahead, and a single instruction for paying attention. Fifty of each. Then the plate is retired.</p>
+    </div>
+
+    <div class="grid">
+      <article class="card rv">
+        <div class="plate"><div class="inner"><img src="https://sspark.genspark.ai/i/XhA0ovRnU3CSea69?width=2560" alt="Framed antique star map hanging on a plaster wall"></div></div>
+        <p class="cat">Envelope No. 07 &nbsp;·&nbsp; ink &amp; gouache on cotton rag</p>
+        <h3>The Lighthouse Keeper&rsquo;s Almanac</h3>
+        <p class="price">$399.00 <s>$480.00</s></p>
+        <a class="add" href="https://shop.lunarystudio.co">Shop this &rarr;</a>
+      </article>
+
+      <article class="card rv">
+        <div class="plate"><div class="inner"><img src="https://sspark.genspark.ai/i/r3vSN6zYgUDpFSN5?width=2560" alt="Framed vintage tarot sun card in a white frame"></div></div>
+        <p class="cat">Envelope No. 08 &nbsp;·&nbsp; risograph &amp; collage on newsprint</p>
+        <h3>Tessellate (A Fool&rsquo;s Geometry)</h3>
+        <p class="price">$185.00 <s>$210.00</s></p>
+        <a class="add" href="https://shop.lunarystudio.co">Shop this &rarr;</a>
+      </article>
+
+      <article class="card rv">
+        <div class="plate"><div class="inner"><img src="https://sspark.genspark.ai/i/36GVrPtr7IBDv9kv?width=2560" alt="Art nouveau figure reaching for stars, framed in black"></div></div>
+        <p class="cat">Envelope No. 09 &nbsp;·&nbsp; cyanotype on watercolour paper</p>
+        <h3>Nightshade Correspondence</h3>
+        <p class="price">$240.00 <s>$280.00</s></p>
+        <a class="add" href="https://shop.lunarystudio.co">Shop this &rarr;</a>
+      </article>
+
+      <article class="card rv">
+        <div class="plate"><div class="inner"><img src="https://sspark.genspark.ai/i/TXkFbfgbWiJtLRLd?width=2560" alt="Vintage botanical plate framed in natural timber"></div></div>
+        <p class="cat">Envelope No. 10 &nbsp;·&nbsp; linocut on BFK Rives</p>
+        <h3>Salt &amp; Longitude</h3>
+        <p class="price">$147.00 <s>$180.00</s></p>
+        <a class="add" href="https://shop.lunarystudio.co">Shop this &rarr;</a>
+      </article>
+
+      <article class="card rv">
+        <div class="plate"><div class="inner"><img src="https://sspark.genspark.ai/i/HStvxoOzFC3pBLBB?width=2560" alt="Hand-inked astrology chart fragment on aged paper"></div></div>
+        <p class="cat">Envelope No. 11 &nbsp;·&nbsp; hand-inked celestial chart</p>
+        <h3>Harp of the Second House</h3>
+        <p class="price">$350.00 <s>$400.00</s></p>
+        <a class="add" href="https://shop.lunarystudio.co">Shop this &rarr;</a>
+      </article>
+
+      <article class="card rv">
+        <div class="plate"><div class="inner"><img src="https://sspark.genspark.ai/i/NGNeKpd1iKBcI3xo?width=2560" alt="Victorian aerialist poster, framed, above a credenza"></div></div>
+        <p class="cat">Envelope No. 12 &nbsp;·&nbsp; serigraph on linen</p>
+        <h3>The Quiet Room</h3>
+        <p class="price">$125.00 <s>$160.00</s></p>
+        <a class="add" href="https://shop.lunarystudio.co">Shop this &rarr;</a>
+      </article>
+    </div>
+
+    <div class="more"><a class="link" href="https://shop.lunarystudio.co">See all editions &rarr;</a></div>
+  </section>
+
+  <!-- ============ EDITORIAL SPLIT ============ -->
+  <section id="studio">
+    <div class="split">
+      <div>
+        <h2 class="rv">Welcome to the world of Lunary</h2>
+        <p class="lede" data-cms="hero_lede1">Lunary is a mail-order studio for people who still believe the sky keeps a calendar. Once a month an envelope leaves the building: a signed edition, a chart for the weeks ahead, and one small instruction for paying attention.</p>
+        <p class="lede" data-cms="hero_lede2">No feed. No algorithm. No scroll. Just paper that arrives when it said it would &mdash; addressed by hand, sealed at the studio, made for the version of you that reads in the evening.</p>
+        <a class="link" href="#blog" data-page="blog">Read Issue 07 &rarr;</a>
+        <p class="vow">Paper is slow on purpose. That is the whole point of it.</p>
+      </div>
+      <figure class="oval rv" style="margin:0">
+        <img src="https://sspark.genspark.ai/i/AaxENUIOhQY2fCXw?width=2560" alt="Baroque celestial fresco detail inside an oval mask">
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============ JOURNAL ============ -->
+  <section id="journal">
+    <div class="sec-head"><h2>Latest from the studio</h2></div>
+    <div class="posts">
+      <article class="post rv">
+        <div class="thumb"><img src="https://sspark.genspark.ai/i/dZyLWNsJfm2K6T4M?width=2560" alt="Pressed plants and flowers laid out on a work table"></div>
+        <p class="cat">Notes &nbsp;·&nbsp; 6 min</p>
+        <h3>Addressing an envelope as a spell</h3>
+        <p>Why the handwriting matters, and what to do with a letter you never send.</p>
+      </article>
+      <article class="post rv">
+        <div class="thumb"><img src="https://sspark.genspark.ai/i/eclNMKGth1vMm0yk?width=2560" alt="Vintage theatrical poster pinned to a studio wall"></div>
+        <p class="cat">Calendar &nbsp;·&nbsp; 4 min</p>
+        <h3>What the waxing gibbous asks of you</h3>
+        <p>The eight stops of a month, and the one that always feels unfinished.</p>
+      </article>
+      <article class="post rv">
+        <div class="thumb"><img src="https://sspark.genspark.ai/i/YMHOz7Xm6EloaQHT?width=2560" alt="Antique etching of a horse on a studio bench"></div>
+        <p class="cat">Studio &nbsp;·&nbsp; 8 min</p>
+        <h3>Mixing cyanotype in a bathroom</h3>
+        <p>Everything you can ruin responsibly before you commit to a proper darkroom.</p>
+      </article>
+    </div>
+
+    <div class="more"><a class="link" href="#blog" data-page="blog">All field notes &rarr;</a></div>
+  </section>
+
+<footer id="contact">
+  <div class="glow" aria-hidden="true"></div>
+  <div class="f-top">
+    <div>
+      <h2>Get the letter before it&rsquo;s posted.</h2>
+      <form class="sign" onsubmit="return false">
+        <input type="email" placeholder="you@somewhere" aria-label="Email address">
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+    <div class="f-col">
+      <h4>Read</h4>
+      <a href="#home" data-page="home">Home</a>
+      <a href="https://shop.lunarystudio.co">Shop</a>
+      <a href="#about" data-page="about">About</a>
+      <a href="#blog" data-page="blog">Blog</a>
+    </div>
+    <div class="f-col">
+      <h4>Reach</h4>
+      <a href="#">Events</a>
+      <a href="#">FAQ</a>
+      <a href="#">Wholesale</a>
+      <a href="#">Instagram</a>
+    </div>
+  </div>
+  <div class="colophon">
+    <span>Lunary Studios &nbsp;·&nbsp; lunarystudio.co</span>
+    <span>Printed &amp; posted by moon phase</span>
+  </div>
+</footer></main>
+</div>
+
+<div class="page" id="page-corr" hidden>
+  <main>
+  <div class="page-head">
+    <p class="eyebrow">The Lunary Correspondence &nbsp;·&nbsp; <strong>Envelope 07</strong> leaves with the full moon</p>
+    <h1>Join the <em>correspondence.</em></h1>
+    <p class="sub">The paper follows the moon &mdash; an envelope every full moon. The tee follows your birthday &mdash; exactly one, posted in your birth month. Take either line, or both in one box.</p>
+  </div>
+
+  <div class="flow">
+
+    <aside class="lede-block">
+      <h2>The paper follows the moon. The tee follows your birthday.</h2>
+      <p class="copy">Nothing here ships on a Tuesday because a warehouse was free. The moon goes full, the envelopes post, and then the studio goes quiet again until the next one.</p>
+      <p class="copy">The tee is different. You get <strong>one</strong>, and it arrives in the month you were born &mdash; your year, marked once.</p>
+
+      <div class="slip" aria-live="polite">
+        <h3>Your slip</h3>
+        <dl>
+          <dt>Line</dt><dd id="s-tier" class="mute">Not chosen</dd>
+          <dt>Written to</dt><dd id="s-name" class="mute">&mdash;</dd>
+          <dt>Tee</dt><dd id="s-size" class="mute">&mdash;</dd>
+          <dt>Posted</dt><dd id="s-dispatch" class="mute">&mdash;</dd>
+        </dl>
+        <div class="total">
+          <b id="s-price">&mdash;</b>
+          <span id="s-unit">per moon</span>
+        </div>
+      </div>
+
+      <p class="smallprint">Cancel any moon, no conversation required. Addresses are kept in a paper ledger and a plain text file &mdash; never sold, never mailed anything but your package.</p>
+    </aside>
+
+    <form class="letter" id="flow" novalidate>
+
+      <div class="prog" id="prog" aria-hidden="true"></div>
+
+      <!-- STEP: CADENCE / LINE -->
+      <section class="step active" data-step="cadence">
+        <h2>Which line are we sending?</h2>
+        <p class="hint">All three go out on the same full moon. The only question is whether the box holds paper, cloth, or both.</p>
+        <p class="dispatch"><span class="dot"></span> Paper with the full moon &nbsp;·&nbsp; tee in your birth month</p>
+
+        <div class="tiers">
+          <label class="tier">
+            <input type="radio" name="tier" value="correspondent">
+            <div class="tier-top">
+              <span class="tier-name">The Correspondent</span>
+              <span class="tier-price">$19 <small>/ moon</small></span>
+            </div>
+            <div class="tier-cad">Paper only &nbsp;·&nbsp; billed monthly</div>
+            <p class="tier-desc">A signed edition, the chart for the weeks ahead, and one instruction for paying attention. Twelve envelopes a year, no cloth, no extras.</p>
+          </label>
+
+          <label class="tier">
+            <input type="radio" name="tier" value="wardrobe">
+            <div class="tier-top">
+              <span class="tier-name">The Wardrobe</span>
+              <span class="tier-price">$55 <small>/ year</small></span>
+            </div>
+            <div class="tier-cad">Apparel only &nbsp;·&nbsp; prepaid yearly</div>
+            <p class="tier-desc">A single Lunary tee, in your size, posted in the month you were born. Prepaid for the year &mdash; one tee, no pile of unworn cotton.</p>
+          </label>
+
+          <label class="tier">
+            <input type="radio" name="tier" value="almanac">
+            <div class="tier-top">
+              <span class="tier-name">The Almanac</span>
+              <span class="tier-price">$251 <small>/ year</small></span>
+            </div>
+            <div class="tier-cad">Paper &amp; apparel &nbsp;·&nbsp; prepaid yearly</div>
+            <p class="tier-desc">Twelve full moons of envelopes &mdash; you pay for eleven. Your tee at $42 instead of $55, the bound year-end archive, and a thirteenth envelope free in any year the sky hands us one.</p>
+            <span class="tier-tag">One moon free &middot; tee $42</span>
+          </label>
+        </div>
+      </section>
+
+      <!-- STEP: ADDRESS -->
+      <section class="step" data-step="address">
+        <h2>Who are we writing to?</h2>
+        <p class="hint">This goes in the ledger exactly as written, so be as legible as you&rsquo;d like the label to be.</p>
+        <div class="fields">
+          <div class="fld wide">
+            <label for="f-name">Full name</label>
+            <input id="f-name" name="name" type="text" autocomplete="name" placeholder="Zartana D. Castaneda">
+            <p class="err" id="e-name">Enter the name that should go on the package.</p>
+          </div>
+          <div class="fld wide">
+            <label for="f-email">Email</label>
+            <input id="f-email" name="email" type="email" autocomplete="email" placeholder="you@somewhere">
+            <p class="err" id="e-email">Enter an email we can actually reach you at.</p>
+          </div>
+          <div class="fld wide">
+            <label for="f-addr">Street address</label>
+            <input id="f-addr" name="addr" type="text" autocomplete="address-line1" placeholder="1 Lunar Way, Apt 3">
+            <p class="err" id="e-addr">We can&rsquo;t post anything without a street.</p>
+          </div>
+          <div class="fld">
+            <label for="f-city">City</label>
+            <input id="f-city" name="city" type="text" autocomplete="address-level2" placeholder="Los Angeles">
+            <p class="err" id="e-city">Add a city.</p>
+          </div>
+          <div class="fld">
+            <label for="f-region">State / region</label>
+            <input id="f-region" name="region" type="text" autocomplete="address-level1" placeholder="CA">
+          </div>
+          <div class="fld">
+            <label for="f-zip">Postal code</label>
+            <input id="f-zip" name="zip" type="text" autocomplete="postal-code" placeholder="90042">
+            <p class="err" id="e-zip">Add a postal code.</p>
+          </div>
+          <div class="fld">
+            <label for="f-country">Country</label>
+            <input id="f-country" name="country" type="text" autocomplete="country-name" placeholder="United States">
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP: SIZE (apparel lines only) -->
+      <section class="step" data-step="size">
+        <h2>What size, and which month?</h2>
+        <p class="hint">Unisex fit, heavy cotton &mdash; if you land between two, take the smaller one, the studio cuts generous. Your tee is posted in the month you were born.</p>
+        <p class="field-label">Tee size</p>
+        <div class="sizes">
+          <label class="sz"><input type="radio" name="size" value="XS"><span>XS</span></label>
+          <label class="sz"><input type="radio" name="size" value="S"><span>S</span></label>
+          <label class="sz"><input type="radio" name="size" value="M"><span>M</span></label>
+          <label class="sz"><input type="radio" name="size" value="L"><span>L</span></label>
+          <label class="sz"><input type="radio" name="size" value="XL"><span>XL</span></label>
+          <label class="sz"><input type="radio" name="size" value="2XL"><span>2XL</span></label>
+          <label class="sz"><input type="radio" name="size" value="3XL"><span>3XL</span></label>
+          <label class="sz"><input type="radio" name="size" value="Surprise me"><span>?</span></label>
+        </div>
+        <p class="size-note" id="size-err" style="display:none;color:var(--err)">Pick a size &mdash; or take the last option and we&rsquo;ll size you generously.</p>
+        <p class="field-label">Birth month</p>
+        <div class="months">
+          <label class="mo"><input type="radio" name="month" value="January"><span>Jan</span></label>
+          <label class="mo"><input type="radio" name="month" value="February"><span>Feb</span></label>
+          <label class="mo"><input type="radio" name="month" value="March"><span>Mar</span></label>
+          <label class="mo"><input type="radio" name="month" value="April"><span>Apr</span></label>
+          <label class="mo"><input type="radio" name="month" value="May"><span>May</span></label>
+          <label class="mo"><input type="radio" name="month" value="June"><span>Jun</span></label>
+          <label class="mo"><input type="radio" name="month" value="July"><span>Jul</span></label>
+          <label class="mo"><input type="radio" name="month" value="August"><span>Aug</span></label>
+          <label class="mo"><input type="radio" name="month" value="September"><span>Sep</span></label>
+          <label class="mo"><input type="radio" name="month" value="October"><span>Oct</span></label>
+          <label class="mo"><input type="radio" name="month" value="November"><span>Nov</span></label>
+          <label class="mo"><input type="radio" name="month" value="December"><span>Dec</span></label>
+        </div>
+        <p class="size-note" id="month-err" style="display:none;color:var(--err)">Pick the month your tee should arrive in.</p>
+      </section>
+
+      <!-- STEP: SEAL -->
+      <section class="step" data-step="seal">
+        <h2>Seal it.</h2>
+        <p class="hint">One last look. If the address is right, the package is right.</p>
+        <dl class="review">
+          <div class="rv-row"><dt>Line</dt><dd id="r-tier">&mdash;</dd></div>
+          <div class="rv-row" id="r-size-row"><dt>Tee size</dt><dd id="r-size">&mdash;</dd></div>
+          <div class="rv-row" id="r-month-row"><dt>Tee month</dt><dd id="r-month">&mdash;</dd></div>
+          <div class="rv-row"><dt>Written to</dt><dd id="r-name">&mdash;</dd></div>
+          <div class="rv-row"><dt>Posting to</dt><dd id="r-addr">&mdash;</dd></div>
+          <div class="rv-row"><dt>Arrives</dt><dd id="r-dispatch">&mdash;</dd></div>
+          <div class="rv-row"><dt>Due each moon</dt><dd id="r-price">&mdash;</dd></div>
+        </dl>
+      </section>
+
+      <!-- SUCCESS -->
+      <section class="done" id="done" aria-live="polite">
+        <div class="seal">L</div>
+        <h2>The package is addressed.</h2>
+        <p class="copy">Your name is in the ledger. <strong id="d-line">Your line</strong> is on its way.</p>
+        <dl class="review">
+          <div class="rv-row"><dt>Written to</dt><dd id="d-name">&mdash;</dd></div>
+          <div class="rv-row" id="d-size-row"><dt>Tee size</dt><dd id="d-size">&mdash;</dd></div>
+          <div class="rv-row" id="d-month-row"><dt>Tee month</dt><dd id="d-month">&mdash;</dd></div>
+          <div class="rv-row"><dt>Posting to</dt><dd id="d-addr">&mdash;</dd></div>
+          <div class="rv-row"><dt>Arrives</dt><dd id="d-dispatch">&mdash;</dd></div>
+        </dl>
+        <p class="copy">A confirmation is on its way to <strong id="d-email">&mdash;</strong>. Nothing else will be, unless you ask.</p>
+      </section>
+
+      <div class="letter-foot" id="foot">
+        <button type="button" class="back" id="back" hidden>&larr; Back</button>
+        <span class="step-count" id="count">Step 1 of 3</span>
+        <button type="button" class="go" id="go">Continue <i>&rarr;</i></button>
+      </div>
+
+    </form>
+  </div>
+
+<footer>
+  <div class="glow" aria-hidden="true"></div>
+  <div class="f-top">
+    <div>
+      <h2>Already a correspondent?</h2>
+      <p style="margin-top:18px;max-width:38ch;font-size:15px;color:var(--ash)">Your line, your size, your address &mdash; all in one place, all editable before the next full moon.</p>
+    </div>
+    <div class="f-col">
+      <h4>Read</h4>
+      <a href="#home" data-page="home">Home</a>
+      <a href="https://shop.lunarystudio.co">Shop</a>
+      <a href="#about" data-page="about">About</a>
+      <a href="#blog" data-page="blog">Blog</a>
+    </div>
+    <div class="f-col">
+      <h4>Reach</h4>
+      <a href="#">Events</a>
+      <a href="#">FAQ</a>
+      <a href="#">Wholesale</a>
+      <a href="#">Instagram</a>
+    </div>
+  </div>
+  <div class="colophon">
+    <span>Lunary Studios &nbsp;·&nbsp; lunarystudio.co</span>
+    <span>Posted by moon phase</span>
+  </div>
+</footer></main>
+</div>
+
+<div class="page" id="page-about" hidden>
+  <main>
+  <div class="page-head">
+    <p class="eyebrow">The studio &nbsp;·&nbsp; <strong>Envelope 07</strong> is on the press</p>
+    <h1>We make twelve things a year. <em>That is the whole plan.</em></h1>
+    <p class="sub">Lunary Studios is two people, a press, and a calendar borrowed from the sky. Nobody here has ever asked how to increase output, because the answer is always the same: wait for the moon.</p>
+  </div>
+
+  <section>
+    <div class="split">
+      <div>
+        <h2 class="rv">Paper is slow, and that is not a flaw.</h2>
+        <p class="lede">The studio began with a shelf of unsent letters and one question: what would art look like if it arrived at the speed of the sky instead of the speed of a feed? The answer took a month to work out and has taken every month since.</p>
+        <p class="lede">So an envelope leaves on each full moon. Fifty of each, hand-addressed, carrying a signed work, the chart for the weeks ahead, and one instruction for paying attention. When the fiftieth is gone the plate is scratched and the ink is not mixed again.</p>
+        <p class="vow">If it could arrive instantly, it would not be worth sending.</p>
+      </div>
+      <figure class="oval rv" style="margin:0">
+        <img src="https://sspark.genspark.ai/i/dMIMP1GPxLoejeN2?width=2560" alt="Antique star chart of the northern constellations">
+      </figure>
+    </div>
+  </section>
+
+  <div class="band">
+    <div class="band-in">
+      <h2>Nothing here ships on a Tuesday because a warehouse had a free slot.</h2>
+      <div>
+        <p>The press runs when the work is ready and the envelopes post when the moon is full. That means roughly twelve dispatches a year, occasionally thirteen, and a studio that is deliberately quiet in between.</p>
+        <a class="link" href="https://shop.lunarystudio.co">See what is on the shelf &rarr;</a>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div class="sec-head">
+      <h2>How an issue is made</h2>
+      <p>Four stages, in this order, every month. Skipping one is how you get a poster instead of an issue.</p>
+    </div>
+    <div class="craft">
+      <div class="craft-step">
+        <p class="n">01</p>
+        <h3>Drawn</h3>
+        <p>The new moon starts with a blank page and one question worth a month of work. Most questions are discarded here, which is the point of starting early.</p>
+      </div>
+      <div class="craft-step">
+        <p class="n">02</p>
+        <h3>Proofed</h3>
+        <p>At the first quarter the plate goes down three times. Two of the proofs usually fail &mdash; wrong pressure, wrong paper, or an idea that only worked in the sketchbook.</p>
+      </div>
+      <div class="craft-step">
+        <p class="n">03</p>
+        <h3>Printed</h3>
+        <p>Fifty impressions, pulled by hand, inked and registered one at a time. Each is signed and numbered because after the fiftieth the plate is retired for good.</p>
+      </div>
+      <div class="craft-step">
+        <p class="n">04</p>
+        <h3>Posted</h3>
+        <p>Envelopes are addressed in ink, sealed with wax, and handed to the post on the full moon. Then the studio goes quiet and the next question begins.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head right">
+      <h2>The ledger</h2>
+      <p>What actually goes into an envelope, and into a year. Written down here because a promise you cannot check is not a promise.</p>
+    </div>
+    <dl class="ledger">
+      <div class="ledger-row">
+        <dt>Paper</dt>
+        <dd>300gsm cotton rag and BFK Rives. Nothing lighter survives a winter post.</dd>
+      </div>
+      <div class="ledger-row">
+        <dt>Edition</dt>
+        <dd>Fifty impressions of each issue. Retired when the fiftieth leaves.</dd>
+      </div>
+      <div class="ledger-row">
+        <dt>Mediums</dt>
+        <dd>Ink and gouache, linocut, cyanotype, risograph, serigraph. One per issue.</dd>
+      </div>
+      <div class="ledger-row">
+        <dt>Envelope</dt>
+        <dd>Addressed by hand in ink, sealed with wax, posted on the full moon.</dd>
+      </div>
+      <div class="ledger-row">
+        <dt>Cadence</dt>
+        <dd>Twelve dispatches a year, thirteen in a year the sky hands us a blue moon.</dd>
+      </div>
+      <div class="ledger-row">
+        <dt>Cloth</dt>
+        <dd>One tee a year, 6.5oz unisex cotton, screen-printed at the studio. Posted in your birth month on the Wardrobe and Almanac lines.</dd>
+      </div>
+      <div class="ledger-row">
+        <dt>Archive</dt>
+        <dd>Every issue bound into a case at the end of the year, for readers who want the whole thing in one hand.</dd>
+      </div>
+      <div class="ledger-row">
+        <dt>Your data</dt>
+        <dd>A paper ledger and a plain text file. Never sold, never mailed anything but your package.</dd>
+      </div>
+    </dl>
+    <div class="more">
+      <a class="link" href="#blog" data-page="blog">Read the field notes &rarr;</a>
+    </div>
+  </section>
+
+<footer>
+  <div class="glow" aria-hidden="true"></div>
+  <div class="f-top">
+    <div>
+      <h2>Get the letter before it&rsquo;s posted.</h2>
+      <form class="sign" onsubmit="return false">
+        <input type="email" placeholder="you@somewhere" aria-label="Email address">
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+    <div class="f-col">
+      <h4>Read</h4>
+      <a href="#home" data-page="home">Home</a>
+      <a href="https://shop.lunarystudio.co">Shop</a>
+      <a href="#about" data-page="about">About</a>
+      <a href="#blog" data-page="blog">Blog</a>
+    </div>
+    <div class="f-col">
+      <h4>Reach</h4>
+      <a href="#">Events</a>
+      <a href="#">FAQ</a>
+      <a href="#">Wholesale</a>
+      <a href="#">Instagram</a>
+    </div>
+  </div>
+  <div class="colophon">
+    <span>Lunary Studios &nbsp;·&nbsp; lunarystudio.co</span>
+    <span>Printed &amp; posted by moon phase</span>
+  </div>
+</footer></main>
+</div>
+
+<div class="page" id="page-blog" hidden>
+  <main>
+  <div class="page-head">
+    <p class="eyebrow">Field notes &nbsp;·&nbsp; <strong>Nine entries</strong> in the ledger</p>
+    <h1>Notes from a studio <em>that waits for the moon.</em></h1>
+    <p class="sub">What the eight phases actually ask of you, what happens at the press between issues, and why writing something by hand still changes the thing you were trying to say.</p>
+  </div>
+
+  <!-- ============ FEATURED ============ -->
+  <div class="feat">
+    <figure class="shot rv" style="margin:0">
+      <img src="https://sspark.genspark.ai/i/dZyLWNsJfm2K6T4M?width=2560" alt="Pressed plants and flowers laid out on a work table">
+    </figure>
+    <div>
+      <p class="eyebrow">Notes &nbsp;·&nbsp; <strong>Issue 07</strong></p>
+      <h2 class="rv" data-cms="feat_title">Addressing an envelope as a spell</h2>
+      <p class="dek" data-cms="feat_dek">Why the handwriting matters, what a wax seal is really doing, and what to do with a letter you finish and then decide never to send. Some of them are still worth posting.</p>
+      <p class="meta">Notes &nbsp;·&nbsp; 6 min &nbsp;·&nbsp; from Envelope 07</p>
+    </div>
+  </div>
+
+  <!-- ============ THE REST ============ -->
+  <section id="entries">
+    <div class="sec-head">
+      <h2>Everything else</h2>
+    </div>
+
+    <div class="filters" id="blog-filters">
+      <button type="button" class="chip" data-filter="all" aria-pressed="true">All</button>
+      <button type="button" class="chip" data-filter="notes" aria-pressed="false">Notes</button>
+      <button type="button" class="chip" data-filter="calendar" aria-pressed="false">Calendar</button>
+      <button type="button" class="chip" data-filter="studio" aria-pressed="false">Studio</button>
+      <button type="button" class="chip" data-filter="process" aria-pressed="false">Process</button>
+      <span class="tally" id="blog-tally">8 entries</span>
+    </div>
+
+    <div class="posts" id="blog-grid" data-count="blog-tally" data-noun="entry" data-plural="entries">
+      <article class="post rv" data-cat="calendar">
+        <div class="thumb"><img data-cms="post4_img" src="https://sspark.genspark.ai/i/eclNMKGth1vMm0yk?width=2560" alt="Vintage theatrical poster pinned to a studio wall"></div>
+        <p class="cat" data-cms="post4_cat">Calendar &nbsp;·&nbsp; 4 min</p>
+        <h3 data-cms="post4_title">What the waxing gibbous asks of you</h3>
+        <p data-cms="post4_dek">The eight stops of a month, and the one that always feels unfinished.</p>
+      </article>
+
+      <article class="post rv" data-cat="studio">
+        <div class="thumb"><img data-cms="post5_img" src="https://sspark.genspark.ai/i/YMHOz7Xm6EloaQHT?width=2560" alt="Antique etching of a horse on a studio bench"></div>
+        <p class="cat" data-cms="post5_cat">Studio &nbsp;·&nbsp; 8 min</p>
+        <h3 data-cms="post5_title">Mixing cyanotype in a bathroom</h3>
+        <p data-cms="post5_dek">Everything you can ruin responsibly before you commit to a proper darkroom.</p>
+      </article>
+
+      <article class="post rv" data-cat="process">
+        <div class="thumb"><img data-cms="post6_img" src="https://sspark.genspark.ai/i/TXkFbfgbWiJtLRLd?width=2560" alt="Vintage botanical plate framed in natural timber"></div>
+        <p class="cat" data-cms="post6_cat">Process &nbsp;·&nbsp; 5 min</p>
+        <h3 data-cms="post6_title">Fifty of each, then the plate is retired</h3>
+        <p data-cms="post6_dek">Why we scratch the plate, and why a sold-out edition stays sold out.</p>
+      </article>
+
+      <article class="post rv" data-cat="calendar">
+        <div class="thumb"><img data-cms="post7_img" src="https://sspark.genspark.ai/i/ZBj5LA3Dz6KdGY0P?width=2560" alt="Victorian aerialist poster illustration"></div>
+        <p class="cat" data-cms="post7_cat">Calendar &nbsp;·&nbsp; 5 min</p>
+        <h3 data-cms="post7_title">Why the tee arrives in your birth month</h3>
+        <p data-cms="post7_dek">One garment a year, posted when the year turns for you and not for a warehouse.</p>
+      </article>
+
+      <article class="post rv" data-cat="notes">
+        <div class="thumb"><img data-cms="post8_img" src="https://sspark.genspark.ai/i/XhA0ovRnU3CSea69?width=2560" alt="Framed antique star map hanging on a plaster wall"></div>
+        <p class="cat" data-cms="post8_cat">Notes &nbsp;·&nbsp; 9 min</p>
+        <h3 data-cms="post8_title">The lighthouse keeper&rsquo;s almanac, annotated</h3>
+        <p data-cms="post8_dek">Every instruction from Envelope 07, with what we meant and what we did not.</p>
+      </article>
+
+      <article class="post rv" data-cat="notes">
+        <div class="thumb"><img data-cms="post9_img" src="https://sspark.genspark.ai/i/HStvxoOzFC3pBLBB?width=2560" alt="Hand-inked astrology chart fragment on aged paper"></div>
+        <p class="cat" data-cms="post9_cat">Notes &nbsp;·&nbsp; 7 min</p>
+        <h3 data-cms="post9_title">Reading a chart you can&rsquo;t do anything about</h3>
+        <p data-cms="post9_dek">On sitting with a forecast instead of trying to solve it.</p>
+      </article>
+
+      <article class="post rv" data-cat="notes">
+        <div class="thumb"><img data-cms="post10_img" src="https://sspark.genspark.ai/i/s3JqPnO3AfyfQGtu?width=2560" alt="Crescent moon goddess illustration in a vintage hand"></div>
+        <p class="cat" data-cms="post10_cat">Notes &nbsp;·&nbsp; 5 min</p>
+        <h3 data-cms="post10_title">What to do with a letter you never send</h3>
+        <p data-cms="post10_dek">Keep it in the box with the others. That box is a body of work.</p>
+      </article>
+
+      <article class="post rv" data-cat="calendar">
+        <div class="thumb"><img data-cms="post11_img" src="https://sspark.genspark.ai/i/AaxENUIOhQY2fCXw?width=2560" alt="Baroque celestial fresco detail inside an oval mask"></div>
+        <p class="cat" data-cms="post11_cat">Calendar &nbsp;·&nbsp; 4 min</p>
+        <h3 data-cms="post11_title">The eight stops of a month</h3>
+        <p data-cms="post11_dek">New moon to waning crescent, and the work that belongs at each one.</p>
+      </article>
+    </div>
+  </section>
+
+  <div class="band">
+    <div class="band-in">
+      <h2>The next issue is drawn before you read this one.</h2>
+      <div>
+        <p>Field notes land in the same envelope as everything else &mdash; which means about once a moon, and never at three in the morning.</p>
+        <a class="btn" href="#corr" data-page="correspondence">Join the correspondence <i>&rarr;</i></a>
+      </div>
+    </div>
+  </div>
+
+<footer>
+  <div class="glow" aria-hidden="true"></div>
+  <div class="f-top">
+    <div>
+      <h2>Get the letter before it&rsquo;s posted.</h2>
+      <form class="sign" onsubmit="return false">
+        <input type="email" placeholder="you@somewhere" aria-label="Email address">
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+    <div class="f-col">
+      <h4>Read</h4>
+      <a href="#home" data-page="home">Home</a>
+      <a href="https://shop.lunarystudio.co">Shop</a>
+      <a href="#about" data-page="about">About</a>
+      <a href="#blog" data-page="blog">Blog</a>
+    </div>
+    <div class="f-col">
+      <h4>Reach</h4>
+      <a href="#">Events</a>
+      <a href="#">FAQ</a>
+      <a href="#">Wholesale</a>
+      <a href="#">Instagram</a>
+    </div>
+  </div>
+  <div class="colophon">
+    <span>Lunary Studios &nbsp;·&nbsp; lunarystudio.co</span>
+    <span>Posted by moon phase</span>
+  </div>
+</footer></main>
+</div>
+
+<script>
+
+/* ---------- single-file page switching ---------- */
+(function(){
+  var PAGES={home:'page-home',correspondence:'page-corr',about:'page-about',blog:'page-blog'};
+  var TITLES={home:'Lunary Studios \u2014 Art, issued by moon phase',correspondence:'Join the Correspondence \u2014 Lunary Studios',about:'The Studio \u2014 Lunary Studios',blog:'Field Notes \u2014 Lunary Studios'};
+  function showPage(name,anchor){
+    var id=PAGES[name]; if(!id) return;
+    var ps=document.querySelectorAll('.page');
+    for(var i=0;i<ps.length;i++) ps[i].hidden=(ps[i].id!==id);
+    var links=document.querySelectorAll('.menu a');
+    for(var j=0;j<links.length;j++){
+      var a=links[j];
+      if(a.getAttribute('data-page')===name && !a.hasAttribute('data-anchor')) a.setAttribute('aria-current','page');
+      else a.removeAttribute('aria-current');
+    }
+    if(TITLES[name]) document.title=TITLES[name];
+    if(anchor){
+      var t=document.getElementById(anchor);
+      if(t){ requestAnimationFrame(function(){ t.scrollIntoView({behavior:'smooth',block:'start'}); }); return; }
+    }
+    window.scrollTo(0,0);
+  }
+  document.addEventListener('click',function(e){
+    var el=e.target;
+    while(el && el!==document && !(el.tagName==='A' && el.getAttribute && el.getAttribute('data-page'))) el=el.parentElement;
+    if(!el || el===document) return;
+    e.preventDefault();
+    showPage(el.getAttribute('data-page'), el.getAttribute('data-anchor'));
+  });
+  var h=(location.hash||'').replace('#','');
+  if(h==='corr'||h==='correspondence'||h==='page-corr'){ showPage('correspondence'); }
+  else if(h==='about'){ showPage('about'); }
+  else if(h==='blog'){ showPage('blog'); }
+  else if(h==='home'){ showPage('home'); }
+  else if(h && document.getElementById(h)){ showPage('home'); setTimeout(function(){ var t=document.getElementById(h); if(t) t.scrollIntoView({behavior:'smooth',block:'start'}); },60); }
+  window.LUNARY={showPage:showPage};
+})();
+
+
+(function(){
+  var TIERS = {
+    correspondent:{name:'The Correspondent', short:'The Correspondent &mdash; paper, every full moon', price:'$19', unit:'per moon', posted:'Every full moon', dispatch:'With the full moon', tee:false},
+    wardrobe:{name:'The Wardrobe', short:'The Wardrobe &mdash; one tee, posted in your birth month', price:'$55', unit:'per year', posted:'Your birth month', dispatch:'In your birth month', tee:true},
+    almanac:{name:'The Almanac', short:'The Almanac &mdash; paper every moon, one tee in your birth month', price:'$251', unit:'per year', posted:'Every full moon &amp; your month', dispatch:'Every full moon, and your tee in your birth month', tee:true}
+  };
+
+  var form = document.getElementById('flow');
+  var doneEl = document.getElementById('done');
+  var steps = Array.prototype.slice.call(document.querySelectorAll('.step'));
+  var prog = document.getElementById('prog');
+  var back = document.getElementById('back');
+  var go = document.getElementById('go');
+  var count = document.getElementById('count');
+  var foot = document.getElementById('foot');
+
+  var LABELS = {cadence:'Line', address:'Address', size:'Size &amp; month', seal:'Seal'};
+  var choice = {tier:'', size:'', month:''};
+  var order = ['cadence','address','seal'];
+  var idx = 0;
+
+  function picked(n){ var e = form.querySelector('input[name="'+n+'"]:checked'); return e ? e.value : ''; }
+  function val(id){ var e = document.getElementById(id); return e ? e.value.trim() : ''; }
+  function setText(id,t){ var e = document.getElementById(id); if(e) e.textContent = t; }
+  function setHTML(id,h){ var e = document.getElementById(id); if(e) e.innerHTML = h; }
+  function showRow(id,on){ var e = document.getElementById(id); if(e) e.style.display = on ? '' : 'none'; }
+
+  function needsTee(){ return !!(choice.tier && TIERS[choice.tier].tee); }
+
+  function buildOrder(){
+    order = needsTee() ? ['cadence','address','size','seal'] : ['cadence','address','seal'];
+    if(idx > order.length - 1) idx = order.length - 1;
+    if(idx < 0) idx = 0;
+  }
+
+  function renderProg(){
+    prog.innerHTML = '';
+    prog.style.gridTemplateColumns = 'repeat(' + order.length + ',1fr)';
+    order.forEach(function(name,i){
+      var d = document.createElement('div');
+      d.className = 'p';
+      d.setAttribute('data-state', i < idx ? 'done' : (i === idx ? 'now' : 'next'));
+      d.innerHTML = '<div class="pd"></div><div class="pl">' + LABELS[name] + '</div>';
+      prog.appendChild(d);
+    });
+  }
+
+  function show(i){
+    idx = i;
+    var cur = order[idx];
+    steps.forEach(function(s){ s.classList.toggle('active', s.dataset.step === cur); });
+    doneEl.classList.remove('active');
+    foot.style.display = '';
+    back.hidden = (idx === 0);
+    count.textContent = 'Step ' + (idx + 1) + ' of ' + order.length;
+    go.innerHTML = (idx === order.length - 1) ? 'Seal the envelope <i>&rarr;</i>' : 'Continue <i>&rarr;</i>';
+    if(cur === 'seal') fillReview();
+    renderProg();
+  }
+
+  function syncSlip(){
+    var t = TIERS[choice.tier];
+    var tier = document.getElementById('s-tier');
+    var name = document.getElementById('s-name');
+    var size = document.getElementById('s-size');
+    var disp = document.getElementById('s-dispatch');
+
+    if(t){
+      tier.textContent = t.name; tier.className = '';
+      setText('s-price', t.price); setText('s-unit', t.unit);
+      setHTML('s-dispatch', t.posted); disp.className = '';
+    } else {
+      tier.textContent = 'Not chosen'; tier.className = 'mute';
+      setText('s-price','\u2014'); setText('s-unit','per moon');
+      setText('s-dispatch','\u2014'); disp.className = 'mute';
+    }
+
+    var n = val('f-name');
+    if(n){ name.textContent = n; name.className = ''; } else { name.textContent = '\u2014'; name.className = 'mute'; }
+
+    if(needsTee()){
+      var sz = picked('size'), mo = picked('month');
+      var parts = [];
+      if(sz) parts.push(sz);
+      if(mo) parts.push(mo);
+      if(parts.length){ size.textContent = parts.join(' \u00b7 '); size.className = ''; }
+      else { size.textContent = 'Not chosen'; size.className = 'mute'; }
+    } else {
+      size.textContent = t ? 'None' : '\u2014';
+      size.className = 'mute';
+    }
+  }
+
+  function fillReview(){
+    var t = TIERS[choice.tier] || {name:'\u2014', price:'\u2014', unit:'', dispatch:'\u2014'};
+    setHTML('r-tier', t.name);
+    setText('r-name', val('f-name') || '\u2014');
+    showRow('r-size-row', needsTee());
+    showRow('r-month-row', needsTee());
+    setText('r-size', picked('size') || 'Not chosen');
+    setText('r-month', picked('month') || 'Not chosen');
+    var line = [val('f-addr'), val('f-city'), val('f-region'), val('f-zip')].filter(Boolean).join(', ');
+    setText('r-addr', line || '\u2014');
+    setText('r-dispatch', t.dispatch);
+    setHTML('r-price', (t.price === '\u2014') ? '\u2014' : (t.price + ' ' + t.unit));
+  }
+
+  function markErr(inputId, errId, bad){
+    var input = document.getElementById(inputId);
+    var err = document.getElementById(errId);
+    if(input) input.setAttribute('aria-invalid', bad ? 'true' : 'false');
+    if(err) err.classList.toggle('on', !!bad);
+    return bad;
+  }
+
+  function validateAddress(){
+    var bad = false;
+    bad = markErr('f-name','e-name', !val('f-name')) || bad;
+    bad = markErr('f-email','e-email', !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val('f-email'))) || bad;
+    bad = markErr('f-addr','e-addr', !val('f-addr')) || bad;
+    bad = markErr('f-city','e-city', !val('f-city')) || bad;
+    bad = markErr('f-zip','e-zip', !val('f-zip')) || bad;
+    if(bad){ var first = form.querySelector('[aria-invalid="true"]'); if(first) first.focus(); }
+    return !bad;
+  }
+
+  function validateTee(){
+    var okSize = !!picked('size');
+    var okMonth = !!picked('month');
+    document.getElementById('size-err').style.display = okSize ? 'none' : 'block';
+    document.getElementById('month-err').style.display = okMonth ? 'none' : 'block';
+    if(!okSize){ var r = form.querySelector('input[name="size"]'); if(r) r.focus(); }
+    else if(!okMonth){ var m = form.querySelector('input[name="month"]'); if(m) m.focus(); }
+    return okSize && okMonth;
+  }
+
+  function advance(){
+    var cur = order[idx];
+    if(cur === 'cadence'){
+      choice.tier = picked('tier');
+      if(!choice.tier){ var first = form.querySelector('input[name="tier"]'); if(first) first.focus(); return; }
+      buildOrder();
+    } else if(cur === 'address'){
+      if(!validateAddress()) return;
+    } else if(cur === 'size'){
+      if(!validateTee()) return;
+    } else {
+      seal(); return;
+    }
+    show(idx + 1);
+  }
+
+  function seal(){
+    syncSlip();
+    var t = TIERS[choice.tier] || {short:'\u2014', dispatch:'\u2014'};
+    setHTML('d-line', t.short || '\u2014');
+    setText('d-name', val('f-name') || '\u2014');
+    showRow('d-size-row', needsTee());
+    showRow('d-month-row', needsTee());
+    setText('d-size', picked('size') || '\u2014');
+    setText('d-month', picked('month') || '\u2014');
+    var line = [val('f-addr'), val('f-city'), val('f-region'), val('f-zip')].filter(Boolean).join(', ');
+    setText('d-addr', line || '\u2014');
+    setText('d-dispatch', t.dispatch || '\u2014');
+    setText('d-email', val('f-email') || '\u2014');
+
+    steps.forEach(function(s){ s.classList.remove('active'); });
+    doneEl.classList.add('active');
+    foot.style.display = 'none';
+    doneEl.setAttribute('tabindex','-1');
+    doneEl.focus({preventScroll:true});
+    window.scrollTo({top: Math.max(0, doneEl.getBoundingClientRect().top + window.pageYOffset - 120), behavior:'smooth'});
+  }
+
+  form.addEventListener('change', function(e){
+    if(e.target.name === 'tier'){ choice.tier = e.target.value; buildOrder(); }
+    if(e.target.name === 'size'){ choice.size = e.target.value; }
+    if(e.target.name === 'month'){ choice.month = e.target.value; }
+    syncSlip();
+  });
+
+  ['f-name','f-email','f-addr','f-city','f-zip'].forEach(function(id){
+    var el = document.getElementById(id);
+    if(el) el.addEventListener('input', function(){
+      if(el.getAttribute('aria-invalid') === 'true') el.setAttribute('aria-invalid','false');
+      syncSlip();
+    });
+  });
+
+  go.addEventListener('click', advance);
+  back.addEventListener('click', function(){ if(idx > 0) show(idx - 1); });
+
+  form.addEventListener('keydown', function(e){
+    if(e.key === 'Enter' && e.target.tagName !== 'TEXTAREA'){ e.preventDefault(); advance(); }
+  });
+
+  buildOrder();
+  renderProg();
+  syncSlip();
+})();
+
+
+/* ---------- shop & blog filters ---------- */
+(function(){
+  function bandOf(p){ return p < 200 ? 'low' : (p <= 350 ? 'mid' : 'high'); }
+
+  function wire(barSel, listSel){
+    var bar = document.querySelector(barSel);
+    var list = document.querySelector(listSel);
+    if(!bar || !list) return;
+
+    var chips = Array.prototype.slice.call(bar.querySelectorAll('.chip'));
+    var items = Array.prototype.slice.call(list.children);
+    var out = document.getElementById(list.getAttribute('data-count'));
+    var noun = list.getAttribute('data-noun') || 'item';
+    var plural = list.getAttribute('data-plural') || (noun + 's');
+
+    function keyOf(el){
+      var a = el.getAttribute('data-cat');
+      if(a) return a;
+      var p = parseFloat(el.getAttribute('data-price'));
+      return isNaN(p) ? '' : bandOf(p);
+    }
+
+    function apply(cat){
+      var shown = 0;
+      items.forEach(function(el){
+        var keep = (cat === 'all') || (keyOf(el) === cat);
+        el.hidden = !keep;
+        if(keep) shown++;
+      });
+      chips.forEach(function(c){
+        c.setAttribute('aria-pressed', c.getAttribute('data-filter') === cat ? 'true' : 'false');
+      });
+      if(out) out.textContent = shown + ' ' + (shown === 1 ? noun : plural);
+    }
+
+    bar.addEventListener('click', function(e){
+      var t = e.target;
+      while(t && t !== bar && !(t.classList && t.classList.contains('chip'))) t = t.parentElement;
+      if(!t || t === bar) return;
+      apply(t.getAttribute('data-filter'));
+    });
+
+    apply('all');
+  }
+
+  wire('#blog-filters', '#blog-grid');
+})();
+
+</script>
+
+<script id="cms-render">
+(function(){
+  fetch('content.json?t='+Date.now()).then(function(r){return r.ok?r.json():null;}).then(function(d){
+    if(!d) return;
+    function set(k,v,html){
+      if(v==null) return;
+      var el=document.querySelector('[data-cms="'+k+'"]');
+      if(!el) return;
+      if(html){el.innerHTML=v;} else {el.textContent=v;}
+    }
+    if(d.hero){ set('hero_title',d.hero.title,true); set('hero_lede1',d.hero.lede1); set('hero_lede2',d.hero.lede2); }
+    if(d.featured){ set('feat_title',d.featured.title); set('feat_dek',d.featured.dek); }
+    if(d.posts){ for(var i=0;i<d.posts.length;i++){ var p=d.posts[i],n=i+1;
+      set('post'+n+'_cat',p.cat); set('post'+n+'_title',p.title); set('post'+n+'_dek',p.dek);
+      if(p.img){ var im=document.querySelector('[data-cms="post'+n+'_img"]'); if(im) im.setAttribute('src',p.img); } } }
+  }).catch(function(){});
+})();
+</script>
+</body>
+</html>

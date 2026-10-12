@@ -1,0 +1,37 @@
+backend:
+  name: github
+  repo: lunarystudio/lunarystudio
+  branch: main
+
+media_folder: "images"
+public_folder: "/images"
+
+collections:
+  - name: page
+    label: "Brand page"
+    files:
+      - name: content
+        label: "Page content"
+        file: content.json
+        fields:
+          - label: "Homepage headline"
+            name: hero
+            widget: object
+            fields:
+              - {label: "Headline", name: title, widget: string}
+              - {label: "Intro paragraph 1", name: lede1, widget: text}
+              - {label: "Intro paragraph 2", name: lede2, widget: text}
+          - label: "Featured note"
+            name: featured
+            widget: object
+            fields:
+              - {label: "Title", name: title, widget: string}
+              - {label: "Summary", name: dek, widget: text}
+          - label: "Journal entries"
+            name: posts
+            widget: list
+            fields:
+              - {label: "Category + read time", name: cat, widget: string, hint: "e.g. Notes · 6 min"}
+              - {label: "Title", name: title, widget: string}
+              - {label: "Summary", name: dek, widget: text}
+              - {label: "Image URL (optional)", name: img, widget: string, required: false}
