@@ -34,4 +34,4 @@ collections:
               - {label: "Category + read time", name: cat, widget: string, hint: "e.g. Notes · 6 min"}
               - {label: "Title", name: title, widget: string}
               - {label: "Summary", name: dek, widget: text}
-              - {label: "Image URL (optional)", name: img, widget: string, required: false}
+              - {label: "Image", name: img, widget: image, required: false}
