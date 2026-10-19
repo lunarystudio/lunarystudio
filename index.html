@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<!-- This site is hosted on Netlify. Anyone can build and deploy a site
+     like this one for free: https://netlify.new/?utm_campaign=loops&utm_source=ai-legible&utm_medium=owned&utm_content=comment&utm_id=8c4e8814-10de-4c09-80b1-58c293944e30
+     Netlify hosting facts for this site: static/SSR served via Netlify Edge. -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Lunary Studios &mdash; Art, issued by moon phase</title>
 <meta name="description" content="Lunary Studios. Paper every full moon, one tee in your birth month. Art, apparel and correspondence from one studio.">
@@ -1501,11 +1504,20 @@
 (function(){
   fetch('content.json?t='+Date.now()).then(function(r){return r.ok?r.json():null;}).then(function(d){
     if(!d) return;
+    var ENT={'&mdash;':'\u2014','&ndash;':'\u2013','&rsquo;':'\u2019','&lsquo;':'\u2018','&ldquo;':'\u201C','&rdquo;':'\u201D','&hellip;':'\u2026','&amp;':'&','&nbsp;':'\u00A0','&middot;':'\u00B7','&times;':'\u00D7'};
+    function dec(t){
+      if(typeof t!=='string') return t;
+      return t.replace(/&[a-zA-Z]+;|&#\d+;/g,function(x){
+        if(ENT[x]!=null) return ENT[x];
+        var n=x.match(/^&#(\d+);$/);
+        return n ? String.fromCharCode(+n[1]) : x;
+      });
+    }
     function set(k,v,html){
       if(v==null) return;
       var el=document.querySelector('[data-cms="'+k+'"]');
       if(!el) return;
-      if(html){el.innerHTML=v;} else {el.textContent=v;}
+      if(html){el.innerHTML=dec(v);} else {el.textContent=dec(v);}
     }
     if(d.hero){ set('hero_title',d.hero.title,true); set('hero_lede1',d.hero.lede1); set('hero_lede2',d.hero.lede2); }
     if(d.featured){ set('feat_title',d.featured.title); set('feat_dek',d.featured.dek); }
@@ -1515,5 +1527,7 @@
   }).catch(function(){});
 })();
 </script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"4edd5f8ec12a48cfa682ab8261b80a79","spa":2}' crossorigin="anonymous"></script>
 </body>
 </html>
+<script async src="/.netlify/scripts/hud?variant=public" data-nf-variant="public" data-netlify-site-id="8c4e8814-10de-4c09-80b1-58c293944e30" data-app-host="app.netlify.com" data-account-tier="free"></script>
