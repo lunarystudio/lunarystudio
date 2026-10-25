@@ -1,63 +1,1338 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="robots" content="noindex" />
-  <title>Lunary Studio — content editor</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
-  <style>
-    html,body{margin:0;min-height:100%;background:#FAF5E9}
-    #boot{position:fixed;inset:0;display:grid;place-items:center;z-index:9;background:#0F0E0C;color:#E9E3D6;font-family:system-ui,-apple-system,sans-serif}
-    #boot div{text-align:center;max-width:46ch;padding:24px}
-    #boot .mk{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#B4C3AC;margin-bottom:18px}
-    #boot h1{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-weight:600;font-size:1.45rem;letter-spacing:-.02em;margin:0 0 12px}
-    #boot p{color:#8B8478;font-size:.9rem;line-height:1.65;margin:0 0 10px}
-    #boot a{color:#E9E3D6;border-bottom:1px solid rgba(233,227,214,.35);text-decoration:none}
-    #boot .slow{display:none;color:#C4BEB1;border-top:1px solid rgba(233,227,214,.14);padding-top:14px;margin-top:18px;text-align:left;font-size:.84rem}
-    #boot .slow b{color:#E9E3D6;font-weight:500}
-    #boot .spin{width:14px;height:14px;border:1.5px solid rgba(180,195,172,.3);border-top-color:#B4C3AC;border-radius:50%;display:inline-block;vertical-align:-2px;margin-right:9px;animation:sp .8s linear infinite}
-    @keyframes sp{to{transform:rotate(360deg)}}
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lunary Studio — One of one. Dropped once.</title>
+<meta name="description" content="Lunary Studio makes one-of-one garments, journals, art prints and objects in Los Angeles, and releases them as quiet, unannounced drops. No restocks." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,500;12..96,700&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0F0E0C;
+    --ink-2:#16140F;
+    --ink-3:#1D1A15;
+    --bone:#E9E3D6;
+    --ash:#8B8478;
+    --ash-dim:#5E594F;
+    --celadon:#B4C3AC;
+    --line:rgba(233,227,214,.15);
+    --line-soft:rgba(233,227,214,.07);
+    --gutter:clamp(20px,4.5vw,72px);
+    --maxw:1360px;
+    --ease:cubic-bezier(.22,1,.36,1);
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%; scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--bone);
+    font-family:"IBM Plex Sans",system-ui,-apple-system,sans-serif;
+    font-weight:300;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--celadon); color:var(--ink)}
+  a{color:inherit; text-decoration:none}
+  img{max-width:100%; display:block}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 var(--gutter)}
+  .mono{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:11px; font-weight:400; letter-spacing:.16em; text-transform:uppercase;
+  }
+  .rule{height:1px; background:var(--line); border:0; margin:0}
+
+  /* ---------- nav ---------- */
+  header.nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(15,14,12,.82);
+    backdrop-filter:blur(14px) saturate(120%);
+    border-bottom:1px solid var(--line-soft);
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between; gap:24px;
+    height:66px;
+  }
+  .brand{display:flex; align-items:baseline; gap:10px; letter-spacing:.2em}
+  .brand strong{
+    font-family:"Bricolage Grotesque",sans-serif; font-weight:700; font-size:15px;
+    letter-spacing:.14em; text-transform:uppercase;
+  }
+  .brand span{color:var(--ash-dim); font-size:10px; letter-spacing:.22em}
+  nav.links{display:flex; gap:30px; align-items:center}
+  nav.links a{position:relative; padding:4px 0; color:var(--ash); transition:color .3s var(--ease)}
+  nav.links a:hover, nav.links a:focus-visible{color:var(--bone)}
+  nav.links a::after{
+    content:""; position:absolute; left:0; right:0; bottom:-1px; height:1px;
+    background:var(--celadon); transform:scaleX(0); transform-origin:left;
+    transition:transform .45s var(--ease);
+  }
+  nav.links a:hover::after{transform:scaleX(1)}
+  .nav-cta{
+    border:1px solid var(--line); padding:9px 16px; color:var(--bone);
+    transition:background .3s var(--ease), color .3s var(--ease), border-color .3s var(--ease);
+  }
+  .nav-cta:hover{background:var(--bone); color:var(--ink); border-color:var(--bone)}
+  @media (max-width:860px){ nav.links{display:none} }
+
+  /* ---------- hero ---------- */
+  .hero{padding:clamp(48px,8vw,104px) 0 clamp(40px,6vw,72px); position:relative}
+  .hero-grid{
+    display:grid; grid-template-columns:minmax(0,1fr) 300px; gap:clamp(28px,5vw,72px);
+    align-items:start;
+  }
+  .eyebrow{display:flex; align-items:center; gap:14px; color:var(--ash); margin-bottom:clamp(24px,4vw,44px)}
+  .eyebrow i{display:block; width:34px; height:1px; background:var(--celadon); opacity:.8}
+  h1{
+    font-family:"Bricolage Grotesque",sans-serif;
+    font-weight:700;
+    font-size:clamp(3rem,8.6vw,7.6rem);
+    line-height:.86;
+    letter-spacing:-.035em;
+    margin:0 0 clamp(24px,3.5vw,36px);
+    text-wrap:balance;
+  }
+  h1 em{
+    font-style:normal;
+    color:transparent;
+    -webkit-text-stroke:1px var(--ash);
+    text-stroke:1px var(--ash);
+  }
+  .hero-copy{
+    max-width:46ch; color:#CFC9BC; font-size:clamp(1rem,1.15vw,1.12rem);
+    line-height:1.65;
+  }
+  .hero-copy strong{font-weight:500; color:var(--bone)}
+  .hero-actions{display:flex; flex-wrap:wrap; gap:14px; margin-top:clamp(28px,4vw,40px)}
+  .btn{
+    display:inline-flex; align-items:center; gap:12px;
+    padding:15px 26px; font-family:"IBM Plex Mono",monospace;
+    font-size:11px; letter-spacing:.16em; text-transform:uppercase;
+    border:1px solid var(--bone); color:var(--ink); background:var(--bone);
+    transition:transform .3s var(--ease), background .3s var(--ease), color .3s var(--ease);
+  }
+  .btn:hover{transform:translateY(-2px); background:var(--celadon); border-color:var(--celadon)}
+  .btn.ghost{background:transparent; color:var(--bone); border-color:var(--line)}
+  .btn.ghost:hover{background:transparent; color:var(--celadon); border-color:var(--celadon)}
+  .btn .arw{transition:transform .35s var(--ease)}
+  .btn:hover .arw{transform:translateX(4px)}
+
+  /* drop stamp — signature */
+  .stamp-wrap{display:flex; flex-direction:column; gap:26px; padding-top:6px}
+  .stamp{width:100%; max-width:300px; aspect-ratio:1; position:relative; opacity:.95}
+  .stamp svg{width:100%; height:100%; overflow:visible}
+  .stamp .ring-text{
+    font-family:"IBM Plex Mono",monospace; font-size:9.4px; letter-spacing:.34em;
+    fill:var(--ash);
+  }
+  .status{
+    border:1px solid var(--line); padding:18px 20px; background:linear-gradient(180deg,var(--ink-2),var(--ink));
+  }
+  .status .row{display:flex; justify-content:space-between; gap:12px; padding:7px 0; border-bottom:1px dashed var(--line-soft)}
+  .status .row:last-child{border-bottom:0; padding-bottom:0}
+  .status .k{color:var(--ash-dim)}
+  .status .v{color:var(--bone); text-align:right}
+  .status .v.live{color:var(--celadon)}
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr}
+    .stamp-wrap{order:-1; flex-direction:row; align-items:center; gap:18px; padding-top:0}
+    .stamp{max-width:118px; flex:none}
+    .status{flex:1; padding:14px 16px}
+    .status .row{flex-direction:column; gap:1px; padding:6px 0}
+    .status .v{text-align:left}
+  }
+
+  /* ---------- categories ---------- */
+  .cats{border-top:1px solid var(--line); border-bottom:1px solid var(--line); background:var(--ink-2)}
+  .cats .wrap{
+    display:grid; grid-template-columns:230px minmax(0,1fr); gap:clamp(24px,5vw,64px);
+    padding-top:clamp(44px,6vw,76px); padding-bottom:clamp(44px,6vw,76px);
+  }
+  .cats .side .lbl{color:var(--celadon); display:block; margin-bottom:16px}
+  .cats .side p{color:var(--ash); font-size:.9rem; line-height:1.6; margin:0; max-width:24ch}
+  .cat-list{display:flex; flex-direction:column}
+  .cat{
+    display:grid; grid-template-columns:minmax(150px,.55fr) minmax(0,1fr); gap:clamp(14px,3vw,40px);
+    padding:clamp(18px,2.6vw,26px) 0; border-top:1px solid var(--line-soft); align-items:baseline;
+    transition:border-color .4s var(--ease);
+  }
+  .cat:first-child{border-top:0; padding-top:0}
+  .cat:hover{border-color:rgba(180,195,172,.35)}
+  .cat h3{
+    font-family:"Bricolage Grotesque",sans-serif; font-weight:500;
+    font-size:clamp(1.35rem,2.6vw,2.05rem); line-height:1.05; letter-spacing:-.025em; margin:0;
+    transition:color .35s var(--ease);
+  }
+  .cat:hover h3{color:var(--celadon)}
+  .cat p{margin:0; color:#BEB8AB; font-size:.94rem; max-width:52ch}
+  .cat-foot{
+    grid-column:1/-1;
+    margin:28px 0 0; padding-top:26px; border-top:1px solid var(--line-soft);
+    color:#BEB8AB; font-size:clamp(.95rem,1.15vw,1.05rem); line-height:1.6; max-width:78ch;
+  }
+  .cat-foot .mono{
+    display:block; color:var(--celadon); margin-bottom:10px; font-size:10px;
+  }
+  @media (max-width:760px){
+    .cats .wrap{grid-template-columns:1fr; gap:30px}
+    .cats .side p{max-width:34ch}
+    .cat{grid-template-columns:1fr; gap:7px; padding:20px 0}
+    .cat:first-child{padding-top:0}
+  }
+
+  /* ---------- section chrome ---------- */
+  section{padding:clamp(58px,9vw,116px) 0}
+  .sec-head{
+    display:flex; align-items:flex-end; justify-content:space-between; gap:24px;
+    margin-bottom:clamp(28px,4vw,52px); flex-wrap:wrap;
+  }
+  .sec-head .lbl{color:var(--celadon); display:flex; gap:12px; align-items:center}
+  .sec-head .lbl s{text-decoration:none; color:var(--ash-dim)}
+  .sec-head h2{
+    font-family:"Bricolage Grotesque",sans-serif; font-weight:500;
+    font-size:clamp(1.9rem,4vw,3.1rem); line-height:1; letter-spacing:-.03em; margin:14px 0 0;
+  }
+  .sec-note{color:var(--ash); max-width:34ch; font-size:.92rem; line-height:1.6}
+
+  /* ---------- how a drop works ---------- */
+  .steps{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line)}
+  .step{background:var(--ink); padding:clamp(20px,2.4vw,30px); display:flex; flex-direction:column; gap:14px; min-height:230px}
+  .step .n{font-family:"IBM Plex Mono",monospace; font-size:10px; letter-spacing:.2em; color:var(--ash-dim)}
+  .step h3{
+    font-family:"Bricolage Grotesque",sans-serif; font-weight:500; font-size:1.18rem;
+    line-height:1.15; letter-spacing:-.01em; margin:0;
+  }
+  .step p{margin:0; color:var(--ash); font-size:.9rem; line-height:1.55}
+  .step .dot{width:7px; height:7px; border-radius:50%; background:var(--celadon); margin-top:auto; opacity:.85}
+  .step:nth-child(2) .dot{opacity:.55}
+  .step:nth-child(3) .dot{opacity:.3}
+  .step:nth-child(4) .dot{opacity:.14}
+  @media (max-width:900px){ .steps{grid-template-columns:repeat(2,1fr)} }
+  @media (max-width:520px){ .steps{grid-template-columns:1fr} .step{min-height:0} }
+
+  /* ---------- gallery ---------- */
+  .txtlink{border-bottom:1px solid var(--line); padding-bottom:3px; transition:color .3s var(--ease), border-color .3s var(--ease)}
+  .txtlink:hover{color:var(--celadon); border-color:var(--celadon)}
+
+  /* ---------- live drop ---------- */
+  .livedrop{padding:0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); background:var(--ink-2)}
+  .livedrop .wrap{padding-top:clamp(24px,3.4vw,40px); padding-bottom:clamp(24px,3.4vw,40px)}
+  .ld-dormant{display:flex; align-items:center; justify-content:space-between; gap:18px; flex-wrap:wrap}
+  .ld-dormant .l{display:flex; align-items:center; gap:12px; color:var(--ash)}
+  .ld-dormant .dot{width:6px; height:6px; border-radius:50%; background:var(--ash-dim); flex:none}
+  .ld-dormant .r2{display:flex; gap:24px; align-items:center; flex-wrap:wrap}
+  .ld-dormant .r{color:var(--ash-dim)}
+  .ld-dormant .r:hover{color:var(--celadon)}
+  .ld-live{display:grid; grid-template-columns:.9fr 1.1fr; gap:clamp(24px,4vw,56px); align-items:center}
+  .ld-figure{position:relative; aspect-ratio:4/5; background:var(--ink-3); border:1px solid var(--line); overflow:hidden}
+  .ld-figure img{width:100%; height:100%; object-fit:cover}
+  .ld-figure .ph{
+    position:absolute; inset:0; display:grid; place-items:center;
+    font-family:"IBM Plex Mono",monospace; font-size:9.5px; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--ash-dim);
+  }
+  .ld-badge{display:inline-flex; align-items:center; gap:9px; color:var(--celadon); margin-bottom:16px}
+  .ld-badge .pulse{width:7px; height:7px; border-radius:50%; background:var(--celadon); box-shadow:0 0 0 0 rgba(180,195,172,.6); animation:pulse 2.4s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(180,195,172,.5)}70%{box-shadow:0 0 0 9px rgba(180,195,172,0)}100%{box-shadow:0 0 0 0 rgba(180,195,172,0)}}
+  .ld-title{
+    font-family:"Bricolage Grotesque",sans-serif; font-weight:700;
+    font-size:clamp(1.9rem,4.2vw,3.4rem); line-height:.98; letter-spacing:-.03em; margin:0 0 14px;
+  }
+  .ld-medium{color:var(--ash); font-size:.92rem; margin:0 0 18px}
+  .ld-desc{color:#C4BEB1; max-width:46ch; margin:0 0 22px; font-size:.98rem}
+  .ld-buy{display:flex; align-items:center; gap:18px; flex-wrap:wrap}
+  .ld-price{font-family:"Bricolage Grotesque",sans-serif; font-weight:500; font-size:1.4rem; letter-spacing:-.02em}
+  .ld-note{color:var(--ash-dim); margin-top:14px}
+  @media (max-width:860px){
+    .ld-live{grid-template-columns:1fr; gap:20px}
+    .ld-figure{aspect-ratio:1/1; max-width:420px}
+  }
+  @media (max-width:700px){
+    .ld-dormant{align-items:flex-start; gap:16px}
+    .ld-dormant .r2{flex-direction:column; align-items:flex-start; gap:12px; width:100%}
+  }
+
+  /* ---------- gallery ---------- */
+  .gal-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(14px,2vw,24px)}
+  .gal-item{
+    display:block; border:1px solid var(--line); background:var(--ink-2);
+    transition:border-color .4s var(--ease), transform .4s var(--ease);
+  }
+  .gal-item:hover{border-color:rgba(180,195,172,.45); transform:translateY(-3px)}
+  .gal-item .frame{display:block; position:relative; aspect-ratio:4/5; overflow:hidden; background:var(--ink-3)}
+  .gal-item .frame img{width:100%; height:100%; object-fit:cover; transition:transform .7s var(--ease), opacity .4s var(--ease)}
+  .gal-item:hover .frame img{transform:scale(1.03)}
+  .gal-item .cap{display:block; padding:14px 16px 16px; border-top:1px solid var(--line-soft)}
+  .gal-item .cap .t{display:block; font-family:"Bricolage Grotesque",sans-serif; font-weight:500; font-size:1rem; letter-spacing:-.01em; margin-bottom:4px}
+  .gal-item .cap .m{display:block; color:var(--ash-dim); font-size:10px; letter-spacing:.14em; text-transform:uppercase; font-family:"IBM Plex Mono",monospace}
+  .gal-ph .frame{
+    display:grid; place-items:center; background:
+      repeating-linear-gradient(135deg, rgba(233,227,214,.028) 0 1px, transparent 1px 9px),
+      var(--ink-3);
+  }
+  .gal-ph .frame .num{
+    font-family:"IBM Plex Mono",monospace; font-size:10px; letter-spacing:.22em;
+    text-transform:uppercase; color:rgba(139,132,120,.55);
+    border:1px dashed rgba(139,132,120,.28); padding:7px 12px;
+  }
+  .gal-ph .cap .t{color:var(--ash-dim); font-weight:400}
+  .gal-ph{border-style:dashed; border-color:rgba(233,227,214,.1)}
+  .gal-ph:hover{transform:none; border-color:rgba(233,227,214,.1)}
+
+  .gal-empty{
+    display:grid; grid-template-columns:132px minmax(0,1fr); gap:clamp(22px,4vw,48px);
+    align-items:center; border:1px solid var(--line); background:var(--ink-2); padding:clamp(24px,4vw,48px);
+  }
+  .gal-empty svg{width:100%; height:auto; display:block}
+  .gal-empty .lbl{display:block; color:var(--celadon); margin-bottom:14px}
+  .gal-ph-note{color:var(--ash-dim); margin:22px 0 0; font-size:10px; letter-spacing:.14em}
+  .gal-empty h3{
+    font-family:"Bricolage Grotesque",sans-serif; font-weight:500;
+    font-size:clamp(1.25rem,2.4vw,1.85rem); line-height:1.15; letter-spacing:-.022em; margin:0 0 14px; max-width:32ch;
+  }
+  .gal-empty p{color:#BEB8AB; font-size:.96rem; line-height:1.65; max-width:60ch; margin:0 0 20px}
+  @media (max-width:900px){ .gal-grid{grid-template-columns:repeat(2,1fr)} }
+  @media (max-width:560px){ .gal-grid{grid-template-columns:1fr} .gal-item .frame{aspect-ratio:1/1} }
+  @media (max-width:640px){ .gal-empty{grid-template-columns:1fr; gap:20px} .gal-empty .svgwrap{max-width:76px} }
+
+  /* ---------- process ---------- */
+  .process{border-top:1px solid var(--line); background:linear-gradient(180deg,var(--ink),var(--ink-2) 60%,var(--ink))}
+  .proc-grid{display:grid; grid-template-columns:1.05fr .95fr; gap:clamp(28px,5vw,72px); align-items:start}
+  .proc-list{display:flex; flex-direction:column; gap:0}
+  .proc-item{display:grid; grid-template-columns:64px 1fr; gap:18px; padding:22px 0; border-top:1px solid var(--line-soft)}
+  .proc-item:first-child{border-top:0; padding-top:0}
+  .proc-item .n{color:var(--ash-dim)}
+  .proc-item h3{font-family:"Bricolage Grotesque",sans-serif; font-weight:500; font-size:1.05rem; margin:0 0 6px}
+  .proc-item p{margin:0; color:var(--ash); font-size:.92rem}
+  .panel{
+    border:1px solid var(--line); padding:clamp(22px,3vw,34px); background:var(--ink-2);
+    position:relative; overflow:hidden;
+  }
+  .panel .moon-big{position:absolute; right:-46px; top:-46px; width:180px; height:180px; opacity:.10}
+  .panel blockquote{
+    margin:0; font-family:"Bricolage Grotesque",sans-serif; font-weight:300;
+    font-size:clamp(1.15rem,1.7vw,1.45rem); line-height:1.35; letter-spacing:-.01em; color:var(--bone);
+  }
+  .panel .attr{margin-top:20px; color:var(--ash); display:flex; gap:10px; align-items:center}
+  @media (max-width:860px){ .proc-grid{grid-template-columns:1fr} }
+
+  /* ---------- alerts ---------- */
+  .alerts{border-top:1px solid var(--line)}
+  .list-grid{display:grid; grid-template-columns:1fr 1fr; gap:clamp(28px,5vw,80px); align-items:center}
+  .alerts h2{
+    font-family:"Bricolage Grotesque",sans-serif; font-weight:700;
+    font-size:clamp(2.1rem,4.4vw,3.6rem); line-height:.98; letter-spacing:-.03em; margin:14px 0 18px;
+  }
+  .alerts p{color:#C4BEB1; max-width:42ch; margin:0}
+  form.capture{border:1px solid var(--line); padding:clamp(20px,3vw,30px); background:var(--ink-2)}
+  .field{display:flex; flex-direction:column; gap:8px; margin-bottom:16px}
+  .field label{color:var(--ash-dim)}
+  .field input{
+    background:transparent; border:1px solid var(--line); color:var(--bone);
+    padding:13px 14px; font-family:"IBM Plex Sans",sans-serif; font-size:.95rem; font-weight:300;
+    outline:none; transition:border-color .3s var(--ease);
+  }
+  .field input:focus{border-color:var(--celadon)}
+  .field input::placeholder{color:var(--ash-dim)}
+  .capture .fine{color:var(--ash-dim); font-size:.76rem; line-height:1.5; margin:14px 0 0}
+  .capture .btn{width:100%; justify-content:center}
+  .cap-note{display:flex; gap:10px; color:var(--ash); font-size:.82rem; margin-top:14px; align-items:flex-start}
+  .cap-note i{display:block; width:6px; height:6px; border-radius:50%; background:var(--celadon); margin-top:6px; flex:none}
+  @media (max-width:820px){ .list-grid{grid-template-columns:1fr} }
+
+  /* ---------- faq ---------- */
+  details.faq{border-top:1px solid var(--line-soft); padding:20px 0}
+  details.faq:last-of-type{border-bottom:1px solid var(--line-soft)}
+  details.faq summary{
+    list-style:none; cursor:pointer; display:flex; justify-content:space-between; gap:20px;
+    align-items:baseline; font-family:"Bricolage Grotesque",sans-serif; font-weight:500;
+    font-size:clamp(1rem,1.4vw,1.12rem); letter-spacing:-.01em; color:var(--bone);
+  }
+  details.faq summary::-webkit-details-marker{display:none}
+  details.faq summary .pm{color:var(--celadon); font-family:"IBM Plex Mono",monospace; font-size:13px; transition:transform .3s var(--ease)}
+  details.faq[open] summary .pm{transform:rotate(45deg)}
+  details.faq p{color:var(--ash); margin:14px 0 0; max-width:70ch; font-size:.94rem}
+
+  /* ---------- footer ---------- */
+  footer{border-top:1px solid var(--line); padding:clamp(40px,6vw,64px) 0 28px; background:var(--ink-2)}
+  .foot-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:32px; margin-bottom:44px}
+  .foot-grid .brand{margin-bottom:12px}
+  .foot-grid p{color:var(--ash); font-size:.88rem; max-width:34ch; margin:0}
+  .foot-col .mono{color:var(--celadon); margin-bottom:14px; display:block}
+  .foot-col a{display:block; color:var(--ash); padding:5px 0; font-size:.9rem; transition:color .3s var(--ease)}
+  .foot-col a:hover{color:var(--bone)}
+  .foot-bottom{display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; padding-top:22px; border-top:1px solid var(--line-soft); color:var(--ash-dim)}
+  @media (max-width:760px){ .foot-grid{grid-template-columns:1fr 1fr} .foot-grid > div:first-child{grid-column:1/-1} }
+
+  /* ---------- notes ---------- */
+  .notes{border-top:1px solid var(--line)}
+  .notes-list{border-top:1px solid var(--line-soft)}
+  .note-row{
+    display:grid; grid-template-columns:130px minmax(0,1fr) 110px;
+    gap:clamp(14px,3vw,36px); align-items:baseline;
+    padding:24px 0; border-bottom:1px solid var(--line-soft);
+    transition:background .35s var(--ease);
+  }
+  .note-row:hover{background:rgba(180,195,172,.03)}
+  .note-row .d{color:var(--ash-dim); display:flex; gap:10px; align-items:center}
+  .note-row .d b{color:var(--celadon); font-weight:400; font-size:12px}
+  .note-row h3{
+    font-family:"Bricolage Grotesque",sans-serif; font-weight:500;
+    font-size:clamp(1.05rem,1.8vw,1.42rem); line-height:1.15; letter-spacing:-.02em;
+    margin:0 0 6px; transition:color .3s var(--ease);
+  }
+  .note-row:hover h3{color:var(--celadon)}
+  .note-row p{margin:0; color:var(--ash); font-size:.9rem; max-width:58ch}
+  .note-row .rt{color:var(--ash-dim); text-align:right; white-space:nowrap}
+  .note-row .rt .arw{display:inline-block; margin-left:7px; transition:transform .35s var(--ease)}
+  .note-row:hover .rt .arw{transform:translateX(4px); color:var(--celadon)}
+  @media (max-width:760px){
+    .note-row{grid-template-columns:1fr; gap:8px; padding:20px 0}
+    .note-row .rt{text-align:left}
+  }
+  .notes-all{display:inline-flex; align-items:center; gap:10px; margin-top:26px; color:var(--bone); border-bottom:1px solid var(--line); padding-bottom:4px; transition:color .3s var(--ease), border-color .3s var(--ease)}
+  .notes-all:hover{color:var(--celadon); border-color:var(--celadon)}
+  .notes-all .arw{transition:transform .35s var(--ease)}
+  .notes-all:hover .arw{transform:translateX(4px)}
+
+  /* ===== notes + article styles ===== */
+:root{
+    --ink:#0F0E0C; --ink-2:#16140F; --ink-3:#1D1A15;
+    --bone:#E9E3D6; --ash:#8B8478; --ash-dim:#5E594F;
+    --celadon:#B4C3AC;
+    --line:rgba(233,227,214,.15); --line-soft:rgba(233,227,214,.07);
+    --gutter:clamp(20px,4.5vw,72px); --maxw:1360px;
+    --ease:cubic-bezier(.22,1,.36,1);
+  }
+  
+  
+  
+  
+  
+  
+  
+
+  /* nav */
+  
+  
+  
+  
+  
+  
+  
+  
+  nav.links a::after{
+    content:""; position:absolute; left:0; right:0; bottom:-1px; height:1px;
+    background:var(--celadon); transform:scaleX(0); transform-origin:left;
+    transition:transform .45s var(--ease);
+  }
+  nav.links a:hover::after, nav.links a.on::after{transform:scaleX(1)}
+  
+  
+  @media (max-width:860px){  }
+
+  /* masthead */
+  .mast{padding:clamp(48px,7vw,96px) 0 clamp(30px,4vw,54px)}
+  .mast .eyebrow{display:flex; align-items:center; gap:14px; color:var(--ash); margin-bottom:clamp(20px,3vw,34px)}
+  .mast .eyebrow i{display:block; width:34px; height:1px; background:var(--celadon); opacity:.8}
+  .mast h1{
+    font-family:"Bricolage Grotesque",sans-serif; font-weight:700;
+    font-size:clamp(2.7rem,7vw,6rem); line-height:.88; letter-spacing:-.035em; margin:0 0 22px;
+  }
+  .mast h1 em{font-style:normal; color:transparent; -webkit-text-stroke:1px var(--ash)}
+  .mast p{color:#C4BEB1; max-width:52ch; margin:0; font-size:clamp(.98rem,1.1vw,1.08rem)}
+
+  /* post list */
+  .posts{border-top:1px solid var(--line)}
+  .post{
+    display:grid; grid-template-columns:150px minmax(0,1fr) 150px;
+    gap:clamp(16px,3vw,40px); align-items:start;
+    padding:clamp(24px,3.4vw,38px) 0; border-bottom:1px solid var(--line-soft);
+    cursor:pointer; position:relative; transition:background .35s var(--ease);
+  }
+  .post:hover{background:rgba(180,195,172,.03)}
+  .post .meta{color:var(--ash-dim); display:flex; flex-direction:row; gap:10px; align-items:baseline; padding-top:5px; white-space:nowrap}
+  .post .meta .moon{color:var(--celadon); font-size:13px; letter-spacing:.05em; opacity:.8}
+  .post h2{
+    font-family:"Bricolage Grotesque",sans-serif; font-weight:500;
+    font-size:clamp(1.25rem,2.3vw,1.85rem); line-height:1.12; letter-spacing:-.022em;
+    margin:0 0 10px; transition:color .35s var(--ease);
+  }
+  .post:hover h2{color:var(--celadon)}
+  .post p{margin:0; color:var(--ash); font-size:.94rem; max-width:60ch}
+  .post .rt{color:var(--ash-dim); text-align:right; padding-top:6px; white-space:nowrap}
+  .post .rt .arw{display:inline-block; margin-left:8px; transition:transform .35s var(--ease)}
+  .post:hover .rt .arw{transform:translateX(4px); color:var(--celadon)}
+  @media (max-width:820px){
+    .post{grid-template-columns:1fr; gap:10px; padding:26px 0}
+    .post .meta{flex-direction:row; gap:14px; align-items:center; padding-top:0}
+    .post .rt{text-align:left; padding:0; margin-top:2px}
+  }
+
+  /* reader */
+  .reader{display:none}
+  .reader.on{display:block}
+  .listview.off{display:none}
+  .readbar{
+    padding:26px 0; border-bottom:1px solid var(--line-soft);
+    display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap;
+  }
+  .backlink{display:inline-flex; align-items:center; gap:10px; color:var(--ash); transition:color .3s var(--ease)}
+  .backlink:hover{color:var(--celadon)}
+  .backlink .arw{display:inline-block; transition:transform .3s var(--ease)}
+  .backlink:hover .arw{transform:translateX(-4px)}
+
+  article.post-
+  article.post-body .kicker{display:flex; gap:16px; align-items:center; color:var(--ash-dim); margin-bottom:24px; flex-wrap:wrap}
+  article.post-body .kicker b{color:var(--celadon); font-weight:400}
+  article.post-body h1{
+    font-family:"Bricolage Grotesque",sans-serif; font-weight:700;
+    font-size:clamp(2rem,4.6vw,3.5rem); line-height:1; letter-spacing:-.03em; margin:0 0 22px;
+  }
+  article.post-body .dek{
+    color:#C4BEB1; font-size:clamp(1.05rem,1.5vw,1.28rem); line-height:1.5;
+    margin:0 0 36px; padding-bottom:32px; border-bottom:1px solid var(--line-soft);
+  }
+  article.post-body p{color:#CFC9BC; font-size:1.03rem; line-height:1.75; margin:0 0 22px}
+  article.post-body p strong{font-weight:500; color:var(--bone)}
+  article.post-body p em{font-style:italic; color:var(--ash)}
+  article.post-body h2{
+    font-family:"Bricolage Grotesque",sans-serif; font-weight:500;
+    font-size:clamp(1.25rem,2vw,1.55rem); letter-spacing:-.015em;
+    margin:44px 0 16px; color:var(--bone);
+  }
+  article.post-body blockquote{
+    margin:34px 0; padding:2px 0 2px 26px; border-left:1px solid var(--celadon);
+    font-family:"Bricolage Grotesque",sans-serif; font-weight:300;
+    font-size:clamp(1.2rem,2.1vw,1.6rem); line-height:1.35; letter-spacing:-.015em; color:var(--bone);
+  }
+  article.post-body blockquote cite{display:block; margin-top:16px; font-family:"IBM Plex Mono",monospace; font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--ash-dim); font-style:normal}
+  article.post-body .sig{
+    margin-top:44px; padding-top:24px; border-top:1px solid var(--line-soft);
+    color:var(--ash); display:flex; gap:12px; align-items:center; flex-wrap:wrap;
+  }
+  article.post-body .sig b{color:var(--bone); font-weight:400}
+
+  .pager{display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
+  .pager a{background:var(--ink); padding:clamp(20px,3vw,30px); display:flex; flex-direction:column; gap:8px; transition:background .35s var(--ease)}
+  .pager a:hover{background:var(--ink-2)}
+  .pager a .lbl{color:var(--ash-dim)}
+  .pager a .t{font-family:"Bricolage Grotesque",sans-serif; font-weight:500; font-size:1.02rem; letter-spacing:-.01em; transition:color .3s var(--ease)}
+  .pager a:hover .t{color:var(--celadon)}
+  .pager a.next{text-align:right; align-items:flex-end}
+  .pager a.empty{pointer-events:none}
+  .pager a.empty .t{color:var(--ash-dim)}
+  .pager a.empty .lbl{opacity:.5}
+  @media (max-width:640px){ .pager{grid-template-columns:1fr} .pager a.next{text-align:left; align-items:flex-start} }
+
+  /* footer */
+  
+  
+  
+  .foot-col 
+  
+  
+  
+  @media (max-width:760px){  .foot-grid > div:first-child{grid-column:1/-1} }
+
+  /* view switching */
+  #readerView .reader{display:block}
+  article.post-body{padding-top:clamp(28px,4vw,44px)}
+  article.post-body .kicker{display:flex; flex-wrap:wrap; align-items:center; gap:14px; margin-bottom:22px}
+  article.post-body .kicker b{color:var(--celadon); font-weight:400}
+  article.post-body .kicker span{color:var(--ash-dim)}
+  #read-meta{display:none}
+  #notesView .mast{padding-top:clamp(34px,5vw,64px)}
+  #notesView, #readerView{min-height:70vh}
+  .readbar{display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap}
+  .notes-home{padding:clamp(36px,5vw,64px) 0}
+
+  /* entrance — CSS only, always ends visible */
+  @keyframes rise{from{opacity:0; transform:translateY(14px)} to{opacity:1; transform:none}}
+  .hero h1{animation:rise .85s var(--ease) .05s both}
+  .hero-copy, .hero-actions, .eyebrow{animation:rise .85s var(--ease) .16s both}
+  .stamp-wrap{animation:rise .9s var(--ease) .26s both}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .hero h1,.hero-copy,.hero-actions,.eyebrow,.stamp-wrap{animation:none}
+    .btn:hover{transform:none}
+  }
+  :focus-visible{outline:2px solid var(--celadon); outline-offset:3px}
+</style>
 </head>
 <body>
-  <div id="boot">
-    <div>
-      <div class="mk">Lunary Studio</div>
-      <h1><span class="spin"></span>Opening the editor…</h1>
-      <p>The editor is loading.</p>
-      <div class="slow">
-        <p><b>It's taking longer than expected.</b></p>
-        <p>The CMS file is loading but the login step hasn't been configured on Netlify yet. That's a one-time setup on your side — GitHub OAuth, about five minutes.</p>
-        <p>Until then the site itself works fine; this page is only for editing content.</p>
-        <p style="margin-top:14px"><a href="/">Back to the site</a></p>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top" aria-label="Lunary Studio home">
+      <strong>Lunary Studio</strong><span class="mono">LA</span>
+    </a>
+    <nav class="links mono" aria-label="Primary">
+      <a href="#made">What's made</a>
+      <a href="#drops">Drops</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#process">Process</a>
+      <a href="#notes" id="navNotes">Notes</a>
+      <a href="#alerts">Alerts</a>
+    </nav>
+    <a class="nav-cta mono" href="https://shop.lunarystudio.co/" target="_blank" rel="noopener">Shop &#8599;</a>
+  </div>
+</header>
+
+<main id="top">
+<div id="homeView">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow mono"><i></i>One of one · Los Angeles</div>
+        <h1>Made once.<br><em>Never again.</em></h1>
+        <p class="hero-copy">
+          Garments, hand-bound journals, art prints, objects — released in drops that never look the same twice.
+          A drop might be one piece. It might be six, across three kinds. <strong>Every single thing is one of one.</strong>
+          When it's gone, it stays gone.
+        </p>
+        <div class="hero-actions">
+          <a class="btn" href="#alerts">Get drop alerts <span class="arw">→</span></a>
+          <a class="btn ghost" href="#gallery">See the gallery</a>
+        </div>
+      </div>
+
+      <div class="stamp-wrap">
+        <div class="stamp" aria-hidden="true">
+          <svg viewBox="0 0 200 200">
+            <defs>
+              <path id="circlePath" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0" />
+            </defs>
+            <circle cx="100" cy="100" r="94" fill="none" stroke="rgba(233,227,214,.16)" stroke-width="1"/>
+            <circle cx="100" cy="100" r="62" fill="none" stroke="rgba(233,227,214,.10)" stroke-width="1"/>
+            <text class="ring-text">
+              <textPath href="#circlePath" startOffset="0%">LUNARY STUDIO · ONE OF ONE · NUMBERED · </textPath>
+            </text>
+            <g transform="translate(100,100)">
+              <circle r="30" fill="#B4C3AC" opacity=".92"/>
+              <circle r="30" fill="#0F0E0C" transform="translate(13,-4)"/>
+            </g>
+            <text x="100" y="152" text-anchor="middle" fill="#5E594F"
+                  style="font-family:'IBM Plex Mono',monospace; font-size:8.6px; letter-spacing:.32em">001</text>
+          </svg>
+        </div>
+
+        <div class="status mono">
+          <div class="row"><span class="k">Current</span><span class="v live">Drop 001 — in the works</span></div>
+          <div class="row"><span class="k">Contents</span><span class="v">Undisclosed</span></div>
+          <div class="row"><span class="k">Release</span><span class="v">No date. When it's done.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       LIVE DROP — edit the DROP block at the bottom of this file.
+       Turn it on by setting live: true there.
+       ============================================================ -->
+  <section class="livedrop" id="live" aria-live="polite">
+    <div class="wrap" id="liveMount"></div>
+  </section>
+
+  <!-- WHAT'S MADE -->
+  <div class="cats" id="made">
+    <div class="wrap">
+      <div class="side">
+        <span class="lbl mono">01 &nbsp;The output</span>
+        <p>Not a line. Not a season. Not a set collection. Four kinds of work — and no rule about how they combine.</p>
+      </div>
+      <div class="cat-list">
+        <div class="cat">
+          <h3>Garments</h3>
+          <p>Cut and sewn one at a time from deadstock, mill ends and vintage cloth taken apart for its material. One size, drafted for one body.</p>
+        </div>
+        <div class="cat">
+          <h3>Journals</h3>
+          <p>Hand-bound books — stitched signatures, cloth or leather covers, paper chosen for how it takes ink. Made to be written in, not displayed.</p>
+        </div>
+        <div class="cat">
+          <h3>Art prints</h3>
+          <p>Single pulls and one-off prints, screened or pressed by hand in the studio. No edition of fifty. One impression, signed and dated.</p>
+        </div>
+        <div class="cat">
+          <h3>Objects</h3>
+          <p>The rest of it: engraved goods, small runs of one, experiments that turned out too good not to release. Whatever the bench produces.</p>
+        </div>
+      </div>
+      <p class="cat-foot"><span class="mono">The rule</span>A drop is whatever is finished when it's time to release — one garment, four journals, a print and a box of small things. I don't plan the mix and I won't announce it in advance. The only constant is that nothing repeats.</p>
+    </div>
+  </div>
+
+  <!-- HOW A DROP WORKS -->
+  <section id="drops">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <div class="lbl mono"><s>02</s> The mechanic</div>
+          <h2>How a drop works</h2>
+        </div>
+        <p class="sec-note">Four steps, no cart drama. The quantity is a surprise; the rules aren't.</p>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <span class="n">01 / Made</span>
+          <h3>A piece gets finished.</h3>
+          <p>Sourced, built and photographed. Photographed hours before release, never weeks — no pre-orders, no promises.</p>
+          <span class="dot"></span>
+        </div>
+        <div class="step">
+          <span class="n">02 / Released</span>
+          <h3>It goes live quietly.</h3>
+          <p>Whatever is ready, goes up together — one piece or a dozen. No preview, no countdown, no contents list beforehand. It's just there.</p>
+          <span class="dot"></span>
+        </div>
+        <div class="step">
+          <span class="n">03 / Claimed</span>
+          <h3>Whoever gets there, gets it.</h3>
+          <p>Each piece is a single unit. First checkout on that piece wins. No holds, no DMs asking to reserve it until Friday.</p>
+          <span class="dot"></span>
+        </div>
+        <div class="step">
+          <span class="n">04 / Closed</span>
+          <h3>None of it returns.</h3>
+          <p>Every piece goes into the gallery marked sold. No re-run in another colourway, no second printing. That's what "one of one" has to mean to be worth saying.</p>
+          <span class="dot"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       GALLERY — edit the GALLERY list at the bottom of this file.
+       Add { img: '/images/file.jpg', title: '...', meta: '...' }
+       ============================================================ -->
+  <section id="gallery">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <div class="lbl mono"><s>03</s> The work</div>
+          <h2>Gallery</h2>
+        </div>
+        <p class="sec-note">Everything that's left the studio, in the order it happened. Nothing removed once it's here.</p>
+      </div>
+
+      <div class="gal-grid" id="galGrid"></div>
+      <div id="galEmpty"></div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process" id="process">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <div class="lbl mono"><s>04</s> The hand</div>
+          <h2>How it's made</h2>
+        </div>
+        <p class="sec-note">Small enough that a single piece can take three weeks. That's the point.</p>
+      </div>
+
+      <div class="proc-grid">
+        <div class="proc-list">
+          <div class="proc-item">
+            <span class="n mono">01</span>
+            <div>
+              <h3>Materials first, mostly secondhand</h3>
+              <p>Deadstock cloth, mill-end paper, vintage frames and findings. What I can find decides what gets made.</p>
+            </div>
+          </div>
+          <div class="proc-item">
+            <span class="n mono">02</span>
+            <div>
+              <h3>One at a time, by hand</h3>
+              <p>A garment cut and sewn. A book stitched and bound. A print pulled and dried. No batch, no production run.</p>
+            </div>
+          </div>
+          <div class="proc-item">
+            <span class="n mono">03</span>
+            <div>
+              <h3>Numbered and moon-dated</h3>
+              <p>Every release gets a stamped number and the moon phase of the day it was finished — the same mark on the piece and in the gallery.</p>
+            </div>
+          </div>
+          <div class="proc-item">
+            <span class="n mono">04</span>
+            <div>
+              <h3>Photographed the day it ships</h3>
+              <p>Shot once, in daylight, in its real state. What you see in the drop is the exact object that arrives at your door.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <svg class="moon-big" viewBox="0 0 100 100" aria-hidden="true">
+            <circle cx="50" cy="50" r="48" fill="#B4C3AC"/>
+            <circle cx="68" cy="44" r="48" fill="#16140F"/>
+          </svg>
+          <blockquote>
+            “If I have to make twelve of something to make the month work, I'm not making anything anymore.
+            I'm running a factory with one employee.”
+          </blockquote>
+          <div class="attr mono"><span>— studio note, October 2026</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOTES -->
+  <section class="notes" id="notes">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <div class="lbl mono"><s>05</s> The writing</div>
+          <h2>Notes</h2>
+        </div>
+        <p class="sec-note">Working notes — what's being made, what it costs, what the gallery doesn't show.</p>
+      </div>
+
+      <div class="notes-list">
+        <a class="note-row" href="#p1">
+          <span class="d mono"><b>◐</b>Oct 21, 2026</span>
+          <div>
+            <h3>Three weeks for one vest</h3>
+            <p>Where the time actually goes, hour by hour, and why I stopped apologizing for it.</p>
+          </div>
+          <span class="rt mono">5 min<span class="arw">→</span></span>
+        </a>
+        <a class="note-row" href="#p2">
+          <span class="d mono"><b>●</b>Oct 09, 2026</span>
+          <div>
+            <h3>What "one of one" actually costs</h3>
+            <p>Why one garment can't be priced like a batch one — and what I'll show you instead of a markup.</p>
+          </div>
+          <span class="rt mono">6 min<span class="arw">→</span></span>
+        </a>
+        <a class="note-row" href="#p3">
+          <span class="d mono"><b>◑</b>Sep 14, 2026</span>
+          <div>
+            <h3>The moon is the timestamp</h3>
+            <p>Why every piece is stamped with a number and a phase, and what that mark is actually for.</p>
+          </div>
+          <span class="rt mono">4 min<span class="arw">→</span></span>
+        </a>
+      </div>
+      <a class="notes-all mono" href="#notes">All notes <span class="arw">→</span></a>
+    </div>
+  </section>
+
+  <!-- ALERTS -->
+  <section class="alerts" id="alerts">
+    <div class="wrap list-grid">
+      <div>
+        <div class="mono" style="color:var(--celadon)"><s style="color:var(--ash-dim)">06</s> &nbsp;Drop alerts</div>
+        <h2>One note when<br>something exists.</h2>
+        <p>
+          Leave an address and you'll get a single email the day a drop goes up — no preview of what's in it,
+          because I don't know until it's finished either. No newsletter, no digest, no account to create.
+        </p>
+        <div class="cap-note"><i></i><span>Nothing is sent between drops. Nothing is charged, ever — you buy a piece or you don't.</span></div>
+      </div>
+
+      <form class="capture" name="drop-alerts" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/?sent=1#alerts">
+        <input type="hidden" name="form-name" value="drop-alerts" />
+        <p hidden><label>Don't fill this out: <input name="bot-field" /></label></p>
+        <div class="field">
+          <label class="mono" for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="you@somewhere.com" required autocomplete="email" />
+        </div>
+        <div class="field">
+          <label class="mono" for="interest">What you're after <span style="color:var(--ash-dim)">(optional)</span></label>
+          <input id="interest" name="interest" type="text" placeholder="garments / journals / prints / anything" />
+        </div>
+        <button class="btn" type="submit">Send me drop alerts <span class="arw">→</span></button>
+        <p class="fine">One-of-one pieces only. No account, no recurring anything — this is just an email list.</p>
+        <p class="sent-note mono" id="sentNote" hidden style="color:var(--celadon); margin:12px 0 0">You're on the list — you'll hear when something drops.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <div class="lbl mono"><s>07</s> The fine print</div>
+          <h2>Questions</h2>
+        </div>
+      </div>
+
+      <div>
+        <details class="faq" open>
+          <summary>When is the next drop? <span class="pm">+</span></summary>
+          <p>When the piece is finished. I don't announce dates I can't guarantee — the drop alert goes out the day it goes live, so the people who asked to be told are told first.</p>
+        </details>
+        <details class="faq">
+          <summary>How many pieces are in a drop? <span class="pm">+</span></summary>
+          <p>No fixed number. Sometimes one garment that took three weeks. Sometimes six things at once because they all happened to finish in the same month. I don't build drops to a count, and I won't tell you what's in one before it's live — only that every piece in it is one of one.</p>
+        </details>
+        <details class="faq">
+          <summary>What kinds of things do you make? <span class="pm">+</span></summary>
+          <p>Garments, hand-bound journals, art prints and small objects — in whatever combination a drop turns out to be. The gallery is the honest record of what's actually come out of here, including how many pieces each drop held.</p>
+        </details>
+        <details class="faq">
+          <summary>Can you make one for me? <span class="pm">+</span></summary>
+          <p>A one-of-one is built once, for one person. If a piece isn't your size, it isn't yours. Commission work is a separate conversation — email the studio rather than waiting for a drop.</p>
+        </details>
+        <details class="faq">
+          <summary>Will sold pieces come back? <span class="pm">+</span></summary>
+          <p>No. No restocks, no second colourway, no reprint "by popular demand." The gallery stays exactly as it is, which is why it's worth looking at.</p>
+        </details>
+        <details class="faq">
+          <summary>Where do I actually buy? <span class="pm">+</span></summary>
+          <p>Checkout happens in the shop, not on this page. When a drop is live, the button at the top of this site goes straight to that piece's listing. The gallery is a record, not a cart — tiles link to listings only while something is available.</p>
+        </details>
+        <details class="faq">
+          <summary>Shipping and returns? <span class="pm">+</span></summary>
+          <p>Ships within 3 business days of purchase, tracked, US and international. Because each piece is unique, returns are accepted within 7 days of delivery, unused — but a return means the piece is gone for good.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- NOTES LIST -->
+<div id="notesView" hidden><div class="listview" id="listview">
+    <section class="mast">
+      <div class="wrap">
+        <div class="eyebrow mono"><i></i>Notes from the bench</div>
+        <h1>Thinking out loud,<br><em>in public.</em></h1>
+        <p>Working notes on what's being made, what it costs to make it, and what the gallery doesn't show. Written when there's something worth saying — not on a schedule.</p>
+      </div>
+    </section>
+
+    <div class="wrap">
+      <div class="posts" id="posts">
+
+        <div class="post" data-post="p1" tabindex="0" role="link">
+          <div class="meta mono"><span class="moon">◐</span><span>Oct 21, 2026</span></div>
+          <div>
+            <h2>Three weeks for one vest</h2>
+            <p>Where the time actually goes, hour by hour, and why I stopped apologizing for it.</p>
+          </div>
+          <div class="rt mono">5 min<span class="arw">→</span></div>
+        </div>
+
+        <div class="post" data-post="p2" tabindex="0" role="link">
+          <div class="meta mono"><span class="moon">●</span><span>Oct 09, 2026</span></div>
+          <div>
+            <h2>What "one of one" actually costs</h2>
+            <p>Why one garment can't be priced like a batch one — and what I'll show you instead of a markup.</p>
+          </div>
+          <div class="rt mono">6 min<span class="arw">→</span></div>
+        </div>
+
+        <div class="post" data-post="p3" tabindex="0" role="link">
+          <div class="meta mono"><span class="moon">◑</span><span>Sep 14, 2026</span></div>
+          <div>
+            <h2>The moon is the timestamp</h2>
+            <p>Why every piece is stamped with a number and a phase, and what that mark is actually for.</p>
+          </div>
+          <div class="rt mono">4 min<span class="arw">→</span></div>
+        </div>
+
+        <div class="post" data-post="p4" tabindex="0" role="link">
+          <div class="meta mono"><span class="moon">○</span><span>Aug 30, 2026</span></div>
+          <div>
+            <h2>Deadstock isn't a marketing word</h2>
+            <p>What it means when a roll of cloth is the last of its kind, and the constraint that comes with it.</p>
+          </div>
+          <div class="rt mono">4 min<span class="arw">→</span></div>
+        </div>
+
+      </div>
+    </div>
+  </div></div>
+
+<!-- ARTICLE READER -->
+<div id="readerView" hidden>
+  <div class="reader" id="reader">
+    <div class="wrap">
+      <div class="readbar"><a class="backlink mono" href="#notes"><span class="arw">←</span> All notes</a><span class="mono" id="read-meta" style="color:var(--ash-dim)"></span></div>
+
+      <!-- P1 -->
+      <article class="post-body" data-body="p1">
+        <div class="kicker mono"><b>◐</b><span>Oct 21, 2026</span><span>·</span><span>5 min</span></div>
+        <h1>Three weeks for one vest</h1>
+        <p class="dek">Where the time actually goes, hour by hour, and why I stopped apologizing for it.</p>
+
+        <p>People ask how long a piece takes and I can hear the follow-up in the question: <em>that long? for one thing?</em> The first drop hasn't left the bench yet, so here is the breakdown of the piece in progress — the honest shape of it, not a projection.</p>
+
+        <p><strong>Finding the material — days, spread over weeks.</strong> Not days of work: days of driving, digging, and coming home with nothing. The current piece is built from a quilt top that sat in a shop bin for decades. I looked at it three separate times before committing, because I couldn't see a garment in it yet. That's the part that can't be scheduled.</p>
+
+        <p><strong>Taking it apart — hours of unpicking.</strong> Every seam by hand. A quilt is three layers held together by thousands of stitches; you can't cut it, or you lose the whole point of using it. My hands hurt for two days after.</p>
+
+        <p><strong>Drafting — a day, roughly.</strong> The cloth decided the shape. The quilt had a strong horizontal band through the middle, so the pattern got drafted around it. No size run, no grading — one body, one block, adjusted until the band landed where it needed to land.</p>
+
+        <blockquote>You can't rush the part where the material tells you what it wants to be. That conversation takes as long as it takes.<cite>Studio note</cite></blockquote>
+
+        <p><strong>Cutting and sewing — the bulk of it.</strong> Hand-finished armholes, bound edges, a lining pieced from the scraps so nothing from that quilt goes in the bin. Fittings in the middle, on a body, with pins.</p>
+
+        <p><strong>Finishing — an afternoon.</strong> Number stamped. Moon phase recorded. Buttons from a jar of deadstock horn. Pressed, photographed, listed.</p>
+
+        <h2>The number nobody likes</h2>
+        <p>Weeks of labour, spread across a month of calendar, plus the looking. For one garment that can be sold exactly once.</p>
+        <p>A factory makes this arithmetic work by making two hundred of them — the setup cost collapses across the run. I have no run. Every single piece carries the full weight of its own setup, and there is no second unit to absorb it.</p>
+        <p>So the price will be what it is, and I've stopped framing it as a luxury. It's the cost of a thing being made once, by one person, from material that will never exist again. If that's not worth it to you, that's a real answer — and there are excellent people making beautiful things in batches at a fifth of the price. They're just not making this.</p>
+        <p>What I won't do is pretend the time isn't there. The honest number is weeks, not days. I'd rather tell you and let you decide than compress it into something that looks efficient and feels like nothing.</p>
+
+        <div class="sig mono"><b>— Brenda</b><span>Lunary Studio</span></div>
+      </article>
+
+      <!-- P2 -->
+      <article class="post-body" data-body="p2">
+        <div class="kicker mono"><b>●</b><span>Oct 09, 2026</span><span>·</span><span>6 min</span></div>
+        <h1>What "one of one" actually costs</h1>
+        <p class="dek">Why a single garment can't be priced like a batch one — and what I'm choosing to be honest about instead.</p>
+
+        <p>I'm not going to post a fake ledger, because the first drop hasn't been priced yet and numbers I invent tonight would be a story, not a fact. What I can tell you is how the arithmetic of one-of-one works, so that when prices do appear you know exactly what you're looking at.</p>
+
+        <h2>Materials</h2>
+        <p>Not bought by the roll. Bought when found, in whatever quantity exists, at whatever the seller wants. There's no volume discount because there's no volume. The material cost of one piece is the full cost of the search that produced it, including the trips that produced nothing.</p>
+
+        <h2>Labour</h2>
+        <p>A batch maker spreads setup across two hundred units, so each one carries a sliver of the pattern, the samples, the mistakes. I spread it across one. Whatever the hours are, the whole thing lands on a single object — and that object can be sold exactly once.</p>
+
+        <blockquote>A batch hides its costs inside the run. A one-of-one has nowhere to hide them, so it either charges honestly or it fails quietly.<cite>Studio note</cite></blockquote>
+
+        <h2>What that means for the price</h2>
+        <p>It will look high next to something made in a run, because it is carrying costs that a run gets to divide. That's not a markup on exclusivity. It's the absence of a second unit to absorb the setup.</p>
+        <p>Three things I'll commit to instead of a pricing table. Every listing will state the hours that went into the piece. Every listing will say what the material was and where it came from. And I won't run a fake "was" price to make the real one look like a deal.</p>
+
+        <h2>What I'm not promising</h2>
+        <p>That this is cheap, or that it's for everyone. There are excellent people making beautiful things in batches for a fifth of the money. They're just not making this — and if the honest number turns out to be more than the piece is worth to you, that's a real answer, not a failure of persuasion.</p>
+
+        <p>Prices arrive with the first drop, and I'd rather publish them late and true than early and invented.</p>
+
+        <div class="sig mono"><b>— Brenda</b><span>Lunary Studio</span></div>
+      </article>
+
+      <!-- P3 -->
+      <article class="post-body" data-body="p3">
+        <div class="kicker mono"><b>◑</b><span>Sep 14, 2026</span><span>·</span><span>4 min</span></div>
+        <h1>The moon is the timestamp</h1>
+        <p class="dek">Why every piece is stamped with a number and a phase, and what that mark is actually for.</p>
+
+        <p>Every piece that leaves here gets two marks: a sequential number, and the moon phase of the day it was finished. Both are stamped into the piece itself — inside a hem, under a cover board, on the back of a print — and both appear in the gallery.</p>
+
+        <p>People assume it's decoration. It's a record.</p>
+
+        <h2>Why a number</h2>
+        <p>The number is the piece's position in the whole body of work. Drop 003 is not "the third month" or "the third collection" — it's the third release, whatever it contained. One garment or six, it gets one number. That's the only way a sequence stays honest when the output is this irregular.</p>
+        <p>It also means the gallery can't be quietly edited later. If piece 17 exists, it exists. There's no version of the record where it didn't happen — which is why it starts empty rather than decorated.</p>
+
+        <h2>Why the moon</h2>
+        <p>Because a date is a bureaucratic fact and a phase is a felt one. I finish things at night, usually late, and the light outside the window is genuinely part of how I remember a piece. The full moon in June, the waning crescent in September — those are better handles for memory than 06.02.26.</p>
+        <p>There's also a practical reason: I don't work to a calendar. A phase is not a deadline. It tells you when something was done without implying when the next one is due.</p>
+
+        <h2>What it does for you</h2>
+        <p>When you own one of these, the mark is your proof of what it is — the specific object, the specific night. If you're here looking, the marks in the gallery are the only honest schedule this studio has. Read the gaps between them and you'll know exactly how erratic this is.</p>
+
+        <blockquote>The gallery is not a catalogue. It's a log of nights when something got finished.<cite>Studio note</cite></blockquote>
+
+        <p>The next one gets stamped when it's done. That's as specific as I'm willing to be.</p>
+
+        <div class="sig mono"><b>— Brenda</b><span>Lunary Studio</span></div>
+      </article>
+
+      <!-- P4 -->
+      <article class="post-body" data-body="p4">
+        <div class="kicker mono"><b>○</b><span>Aug 30, 2026</span><span>·</span><span>4 min</span></div>
+        <h1>Deadstock isn't a marketing word</h1>
+        <p class="dek">What it means when a roll of cloth is the last of its kind, and the constraint that comes with it.</p>
+
+        <p>Deadstock has become a label you can put on anything to make it sound responsible. In practice it means one specific thing: material that was manufactured, never used, and is no longer being made.</p>
+
+        <p>That's it. No virtue attached. Just a supply condition — and it makes everything downstream harder in ways worth explaining.</p>
+
+        <h2>You can't reorder it</h2>
+        <p>This is the whole constraint. When I find a roll of cloth, I buy all of it or I buy some of it, and whatever I don't buy disappears into someone else's project or a landfill. There is no restock. There is no "can you get more in a 34." There often isn't a fibre content label, and there's almost never a width I can plan around.</p>
+        <p>Which means the design process starts with an inventory problem, not an idea. I don't decide to make a coat and then find cloth. I find cloth and then work out what it's willing to become.</p>
+
+        <h2>It's inconsistent, and that's structural</h2>
+        <p>A mill end might be nine metres of perfect wool. The next one is two metres with a flaw down the middle. The two-metre piece becomes a bag, a collar, a set of pockets — or it doesn't become anything, and it goes back into the bin for another year.</p>
+        <p>This is why the gallery will look the way it does once it fills. Not a curated range, but a record of what the material allowed.</p>
+
+        <blockquote>Everybody wants the story of the last roll of cloth. Nobody wants the two years of looking that made finding it possible.<cite>Studio note</cite></blockquote>
+
+        <h2>Why I keep doing it</h2>
+        <p>Because the alternative is ordering the same cloth from the same mill as everyone else, in whatever quantity I want, forever. That's a perfectly good way to run a clothing brand. It's just not a way to make something that couldn't have come from anyone else.</p>
+        <p>The constraint <em>is</em> the design. When the material runs out, the idea runs out with it, and something else begins.</p>
+
+        <div class="sig mono"><b>— Brenda</b><span>Lunary Studio</span></div>
+      </article>
+
+      <div class="pager" id="pager">
+        <a href="#" class="prev" onclick="return false;"></a>
+        <a href="#" class="next" onclick="return false;"></a>
       </div>
     </div>
   </div>
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-  <script>
-    (function(){
-      var boot = document.getElementById('boot');
-      var started = Date.now();
-      var t = setInterval(function(){
-        var mounted = document.querySelector('#nc-root, #nc-root * , .nc-app, [class^="nc-"], [class*=" nc-"], iframe[src*="github"], iframe[src*="netlify"]');
-        if (mounted) {
-          boot.style.display = 'none';
-          clearInterval(t);
-          return;
-        }
-        if (Date.now() - started > 7000) {
-          var slow = boot.querySelector('.slow');
-          if (slow && slow.style.display !== 'block') {
-            boot.querySelector('h1').innerHTML = 'Editor not loading';
-            boot.querySelector('p').textContent = 'The CMS script loaded, but there is no login handler yet.';
-            slow.style.display = 'block';
-          }
-        }
-      }, 120);
-    })();
-  </script>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"4edd5f8ec12a48cfa682ab8261b80a79","spa":2}' crossorigin="anonymous"></script>
+
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="brand"><strong>Lunary Studio</strong><span class="mono">LA</span></div>
+        <p>One-of-one garments, journals, prints and objects — made by hand in Los Angeles, released in drops that never repeat.</p>
+      </div>
+      <div class="foot-col">
+        <span class="mono">Studio</span>
+        <a href="#made">What's made</a>
+        <a href="#drops">How a drop works</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#process">Process</a>
+        <a href="#notes" id="navNotes">Notes</a>
+      </div>
+      <div class="foot-col">
+        <span class="mono">Elsewhere</span>
+        <a href="https://shop.lunarystudio.co/" target="_blank" rel="noopener">Shop</a>
+        <a href="#">Instagram</a>
+        <a href="#">TikTok</a>
+        <a href="#">Email the studio</a>
+      </div>
+    </div>
+    <div class="foot-bottom mono">
+      <span>© 2026 Lunary Studio</span>
+      <span>One of one · No restocks · No reprints</span>
+    </div>
+  </div>
+</footer>
+
+
+
+<script>
+/* ================================================================
+   EDIT BELOW — the only part of this file you need to touch.
+
+   1) THE LIVE DROP
+      When a piece goes up for sale: set live: true and fill in the
+      fields. Link goes to your store (or any checkout URL).
+      When it sells: set live: false. Done.
+
+   2) THE GALLERY
+      Add one line per finished piece, newest first.
+      Put the image file in a folder called "images" next to this
+      file, then reference it as  img: 'images/whatever.jpg'
+      Leave the list empty ( ) and the page shows the empty state.
+   ================================================================ */
+
+var DROP = {
+  live: false,
+  title: 'Untitled — first piece',
+  medium: 'Reclaimed quilt, hand-finished · 1 of 1',
+  note: 'Drop 001. One piece, one owner, never repeated.',
+  price: '$—',
+  image: '',            /* e.g. 'images/drop-001.jpg' */
+  link: 'https://shop.lunarystudio.co/'   /* swap for the exact product URL when one exists */
+};
+
+/* ADD PHOTOS HERE — one line per piece, newest at the top of the list.
+
+   { img: 'images/FILENAME.jpg', title: 'What it is', meta: 'Drop 001 · garment' },
+
+   img    the photo. Either a file in an "images" folder sitting next to
+          this index.html, or a full web address (https://...).
+   title  shown in bold under the photo.
+   meta   small caps line under the title — drop number and category.
+   href   optional. If included, the whole tile becomes a link.
+
+   Copy a line, change the four parts, keep the commas. Example:
+
+   { img: 'images/quilt-vest.jpg', title: 'Reclaimed quilt vest', meta: 'Drop 001 · garment' },
+   { img: 'images/linen-journal.jpg', title: 'Hand-bound linen journal', meta: 'Drop 002 · journal' },
+*/
+/* TEMPLATE MODE — shows six empty photo frames so the layout is complete.
+   The moment you add one real entry below, the placeholders switch off. */
+var SHOW_PLACEHOLDERS = true;    /* true = show six empty photo frames (template look). false = public-ready empty state. */
+
+var GALLERY = [
+  /* Paste real pieces here, newest first. One line each, comma at the end:
+
+     { img: 'images/FILENAME.jpg', title: 'What it is', meta: 'Drop 001 · garment' },
+
+     img    a file in the "images" folder next to this index.html,
+            or a full https:// address.
+     title  bold line under the photo.
+     meta   small caps line — drop number and category.
+     href   optional; makes the whole tile a link.
+  */
+];
+
+/* ================= nothing below here needs editing ================= */
+
+function renderDrop(){
+  var mount = document.getElementById('liveMount');
+  if (!mount) return;
+  if (DROP.live) {
+    mount.innerHTML =
+      '<div class="ld-live">' +
+        '<div class="ld-figure">' +
+          (DROP.image
+            ? '<img src="' + DROP.image + '" alt="' + DROP.title + '">'
+            : '<span class="ph">Photo goes here</span>') +
+        '</div>' +
+        '<div>' +
+          '<div class="ld-badge mono"><span class="pulse"></span>Live now</div>' +
+          '<h2 class="ld-title">' + DROP.title + '</h2>' +
+          '<p class="ld-medium mono">' + DROP.medium + '</p>' +
+          '<p class="ld-desc">' + DROP.note + '</p>' +
+          '<div class="ld-buy">' +
+            '<span class="ld-price">' + DROP.price + '</span>' +
+            '<a class="btn" href="' + DROP.link + '">Claim it <span class="arw">\u2192</span></a>' +
+          '</div>' +
+          '<p class="ld-note mono">Live until it sells \u00B7 first checkout wins</p>' +
+        '</div>' +
+      '</div>';
+  } else {
+    mount.innerHTML =
+      '<div class="ld-dormant">' +
+        '<span class="l mono"><span class="dot"></span>No drop live right now</span>' +
+        '<span class="r2 mono">' +
+          '<a class="r mono" href="#alerts">Get told when the next one lands \u2192</a>' +
+          '<a class="r mono" href="https://shop.lunarystudio.co/" target="_blank" rel="noopener">Shop the store \u2197</a>' +
+        '</span>' +
+      '</div>';
+  }
+}
+
+function renderGallery(){
+  var grid = document.getElementById('galGrid');
+  var empty = document.getElementById('galEmpty');
+  if (!grid || !empty) return;
+  if (GALLERY && GALLERY.length) {
+    empty.innerHTML = '';
+    grid.style.display = '';
+    grid.innerHTML = GALLERY.map(function(g){
+      var cap = '<span class="t">' + (g.title || '') + '</span>' +
+                (g.meta ? '<span class="m">' + g.meta + '</span>' : '');
+      var inner = '<span class="frame"><img src="' + g.img + '" alt="' + (g.title || '') + '" loading="lazy"></span>' +
+                  '<span class="cap">' + cap + '</span>';
+      return g.href
+        ? '<a class="gal-item" href="' + g.href + '">' + inner + '</a>'
+        : '<div class="gal-item">' + inner + '</div>';
+    }).join('');
+  } else if (SHOW_PLACEHOLDERS) {
+    var ph = '';
+    for (var i = 1; i <= 6; i++) {
+      var n = ('0' + i).slice(-2);
+      ph += '<div class="gal-item gal-ph">' +
+              '<span class="frame"><span class="num">Photo ' + n + '</span></span>' +
+              '<span class="cap"><span class="t">Piece title</span><span class="m">Drop 00' + i + ' \u00B7 category</span></span>' +
+            '</div>';
+    }
+    grid.style.display = '';
+    grid.innerHTML = ph;
+    empty.innerHTML = '<p class="gal-ph-note mono">Template placeholders \u2014 add real pieces in the CMS at /admin.</p>';
+  } else {
+    grid.style.display = 'none';
+    grid.innerHTML = '';
+    empty.innerHTML =
+      '<div class="gal-empty">' +
+        '<div class="svgwrap"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="47" fill="none" stroke="rgba(233,227,214,.14)"/><circle cx="50" cy="50" r="30" fill="none" stroke="rgba(233,227,214,.09)"/><circle cx="50" cy="50" r="17" fill="#B4C3AC" opacity=".22"/></svg></div>' +
+        '<div>' +
+          '<span class="mono lbl">Nothing on the walls yet</span>' +
+          '<h3>The gallery fills as pieces leave the studio.</h3>' +
+          '<p>No piece has been finished and released yet, so there is nothing to show \u2014 and nothing here is invented to fill the space. This is where the work will live, one entry at a time, in the order it happened.</p>' +
+          '<a class="txtlink mono" href="#alerts">Get told when the first one lands</a>' +
+        '</div>' +
+      '</div>';
+  }
+}
+
+renderDrop();
+renderGallery();
+
+/* Content edited in the CMS at /admin is saved to content.json and
+   overrides the fallback values above. Silently keeps the fallback if the
+   file is missing (local preview, first deploy). */
+fetch('content.json', {cache:'no-store'})
+  .then(function(r){ return r.ok ? r.json() : null; })
+  .then(function(d){
+    if (!d) return;
+    if (d.drop) { for (var k in d.drop) { if (d.drop[k] !== null && d.drop[k] !== undefined) DROP[k] = d.drop[k]; } }
+    if (Array.isArray(d.gallery) && d.gallery.length) GALLERY = d.gallery;
+    renderDrop();
+    renderGallery();
+  })
+  .catch(function(){});
+</script>
+<script>
+(function(){
+  var order=['p1','p2','p3','p4'];
+  var titles={p1:"Three weeks for one vest",p2:'What "one of one" actually costs',p3:"The moon is the timestamp",p4:"Deadstock isn't a marketing word"};
+  var metas={p1:"\u25D0 Oct 21, 2026 \u00B7 5 min",p2:"\u25CF Oct 09, 2026 \u00B7 6 min",p3:"\u25D1 Sep 14, 2026 \u00B7 4 min",p4:"\u25CB Aug 30, 2026 \u00B7 4 min"};
+  var home=document.getElementById('homeView');
+  var listV=document.getElementById('notesView');
+  var readV=document.getElementById('readerView');
+  var readMeta=document.getElementById('read-meta');
+  var pager=document.getElementById('pager');
+  var navNotes=document.getElementById('navNotes');
+  var bodies=document.querySelectorAll('article.post-body');
+
+  function view(which){
+    home.hidden = which!=='home';
+    listV.hidden = which!=='list';
+    readV.hidden = which!=='read';
+    if(navNotes) navNotes.classList.toggle('on', which!=='home');
+  }
+
+  function buildPager(id){
+    var i=order.indexOf(id), prev=order[i-1], next=order[i+1];
+    pager.innerHTML='';
+    var a=document.createElement('a');
+    a.className='prev'+(prev?'':' empty');
+    a.innerHTML='<span class="lbl mono">\u2190 Previous</span><span class="t">'+(prev?titles[prev]:'Nothing older')+'</span>';
+    a.href=prev?'#'+prev:'#notes';
+    if(!prev) a.onclick=function(){return false;};
+    var b=document.createElement('a');
+    b.className='next'+(next?'':' empty');
+    b.innerHTML='<span class="lbl mono">Next \u2192</span><span class="t">'+(next?titles[next]:'Nothing newer')+'</span>';
+    b.href=next?'#'+next:'#notes';
+    if(!next) b.onclick=function(){return false;};
+    pager.appendChild(a); pager.appendChild(b);
+  }
+
+  function route(){
+    var id=(location.hash||'').replace('#','');
+    if(order.indexOf(id)!==-1){
+      bodies.forEach(function(art){ art.style.display = (art.dataset.body===id)?'block':'none'; });
+      readMeta.textContent=metas[id];
+      buildPager(id);
+      view('read');
+      window.scrollTo(0,0);
+    } else if(id==='notes'){
+      view('list');
+      window.scrollTo(0,0);
+    } else {
+      view('home');
+    }
+  }
+  window.addEventListener('hashchange', route);
+  route();
+
+  if (/[?&]sent=1/.test(location.search)) {
+    var note = document.getElementById('sentNote');
+    var btn = document.querySelector('form.capture .btn');
+    if (note) note.hidden = false;
+    if (btn) { btn.textContent = 'You\u2019re on the list \u2713'; btn.style.background = 'var(--celadon)'; }
+  }
+})();
+</script>
 </body>
 </html>
