@@ -1,7 +1,31 @@
 <!doctype html>
-<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Lunary Studio — Content</title></head>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <title>Lunary Studio — content editor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+  <style>
+    html,body{margin:0;height:100%;background:#0F0E0C;color:#E9E3D6;font-family:"IBM Plex Sans",system-ui,sans-serif}
+    #boot{position:fixed;inset:0;display:grid;place-items:center;z-index:9;background:#0F0E0C}
+    #boot div{text-align:center;max-width:44ch;padding:24px}
+    #boot .mk{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#B4C3AC;margin-bottom:18px}
+    #boot h1{font-family:"Bricolage Grotesque",sans-serif;font-weight:600;font-size:1.5rem;letter-spacing:-.02em;margin:0 0 12px}
+    #boot p{color:#8B8478;font-size:.9rem;line-height:1.6;margin:0 0 8px}
+    #boot a{color:#E9E3D6;border-bottom:1px solid rgba(233,227,214,.3);text-decoration:none}
+  </style>
+</head>
 <body>
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-<script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-</body></html>
+  <div id="boot">
+    <div>
+      <div class="mk">Lunary Studio</div>
+      <h1>Opening the editor…</h1>
+      <p>If nothing happens in a few seconds, the CMS login is not configured yet. See the setup notes.</p>
+      <p><a href="/">Back to the site</a></p>
+    </div>
+  </div>
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+</body>
+</html>

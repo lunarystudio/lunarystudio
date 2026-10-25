@@ -1,61 +1,12 @@
 {
-  "hero": {
-    "title": "The sky keeps a calendar. <em>We post it to you.</em>",
-    "lede1": "Lunary is a mail-order studio for people who still believe the sky keeps a calendar. Once a month an envelope leaves the building: a signed edition, a chart for the weeks ahead, and one small instruction for paying attention.",
-    "lede2": "No feed. No algorithm. No scroll. Just paper that arrives when it said it would &mdash; addressed by hand, sealed at the studio, made for the version of you that reads in the evening."
+  "drop": {
+    "live": false,
+    "title": "Untitled — first piece",
+    "medium": "Reclaimed quilt, hand-finished · 1 of 1",
+    "note": "Drop 001. One piece, one owner, never repeated.",
+    "price": "$—",
+    "image": "",
+    "link": "https://shop.lunarystudio.co/"
   },
-  "featured": {
-    "title": "Addressing an envelope as a spell",
-    "dek": "Why the handwriting matters, what a wax seal is really doing, and what to do with a letter you finish and then decide never to send. Some of them are still worth posting."
-  },
-  "posts": [
-    {
-      "cat": "Calendar &nbsp;·&nbsp; 4 min",
-      "title": "What the waxing gibbous asks of you",
-      "dek": "The eight stops of a month, and the one that always feels unfinished.",
-      "img": "https://sspark.genspark.ai/i/eclNMKGth1vMm0yk?width=2560"
-    },
-    {
-      "cat": "Studio &nbsp;·&nbsp; 8 min",
-      "title": "Mixing cyanotype in a bathroom",
-      "dek": "Everything you can ruin responsibly before you commit to a proper darkroom.",
-      "img": "https://sspark.genspark.ai/i/YMHOz7Xm6EloaQHT?width=2560"
-    },
-    {
-      "cat": "Process &nbsp;·&nbsp; 5 min",
-      "title": "Fifty of each, then the plate is retired",
-      "dek": "Why we scratch the plate, and why a sold-out edition stays sold out.",
-      "img": "https://sspark.genspark.ai/i/TXkFbfgbWiJtLRLd?width=2560"
-    },
-    {
-      "cat": "Calendar &nbsp;·&nbsp; 5 min",
-      "title": "Why the tee arrives in your birth month",
-      "dek": "One garment a year, posted when the year turns for you and not for a warehouse.",
-      "img": "https://sspark.genspark.ai/i/ZBj5LA3Dz6KdGY0P?width=2560"
-    },
-    {
-      "cat": "Notes &nbsp;·&nbsp; 9 min",
-      "title": "The lighthouse keeper&rsquo;s almanac, annotated",
-      "dek": "Every instruction from Envelope 07, with what we meant and what we did not.",
-      "img": "https://sspark.genspark.ai/i/XhA0ovRnU3CSea69?width=2560"
-    },
-    {
-      "cat": "Notes &nbsp;·&nbsp; 7 min",
-      "title": "Reading a chart you can&rsquo;t do anything about",
-      "dek": "On sitting with a forecast instead of trying to solve it.",
-      "img": "https://sspark.genspark.ai/i/HStvxoOzFC3pBLBB?width=2560"
-    },
-    {
-      "cat": "Notes &nbsp;·&nbsp; 5 min",
-      "title": "What to do with a letter you never send",
-      "dek": "Keep it in the box with the others. That box is a body of work.",
-      "img": "https://sspark.genspark.ai/i/s3JqPnO3AfyfQGtu?width=2560"
-    },
-    {
-      "cat": "Calendar &nbsp;·&nbsp; 4 min",
-      "title": "The eight stops of a month",
-      "dek": "New moon to waning crescent, and the work that belongs at each one.",
-      "img": "https://sspark.genspark.ai/i/AaxENUIOhQY2fCXw?width=2560"
-    }
-  ]
+  "gallery": []
 }

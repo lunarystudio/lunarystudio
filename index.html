@@ -1159,7 +1159,7 @@ var DROP = {
 */
 /* TEMPLATE MODE — shows six empty photo frames so the layout is complete.
    The moment you add one real entry below, the placeholders switch off. */
-var SHOW_PLACEHOLDERS = false;   /* true = show six empty photo frames (template look). false = public-ready empty state. */
+var SHOW_PLACEHOLDERS = true;    /* true = show six empty photo frames (template look). false = public-ready empty state. */
 
 var GALLERY = [
   /* Paste real pieces here, newest first. One line each, comma at the end:
@@ -1176,78 +1176,101 @@ var GALLERY = [
 
 /* ================= nothing below here needs editing ================= */
 
-(function(){
+function renderDrop(){
   var mount = document.getElementById('liveMount');
-  if (mount) {
-    if (DROP.live) {
-      mount.innerHTML =
-        '<div class="ld-live">' +
-          '<div class="ld-figure">' +
-            (DROP.image
-              ? '<img src="' + DROP.image + '" alt="' + DROP.title + '">'
-              : '<span class="ph">Photo goes here</span>') +
+  if (!mount) return;
+  if (DROP.live) {
+    mount.innerHTML =
+      '<div class="ld-live">' +
+        '<div class="ld-figure">' +
+          (DROP.image
+            ? '<img src="' + DROP.image + '" alt="' + DROP.title + '">'
+            : '<span class="ph">Photo goes here</span>') +
+        '</div>' +
+        '<div>' +
+          '<div class="ld-badge mono"><span class="pulse"></span>Live now</div>' +
+          '<h2 class="ld-title">' + DROP.title + '</h2>' +
+          '<p class="ld-medium mono">' + DROP.medium + '</p>' +
+          '<p class="ld-desc">' + DROP.note + '</p>' +
+          '<div class="ld-buy">' +
+            '<span class="ld-price">' + DROP.price + '</span>' +
+            '<a class="btn" href="' + DROP.link + '">Claim it <span class="arw">\u2192</span></a>' +
           '</div>' +
-          '<div>' +
-            '<div class="ld-badge mono"><span class="pulse"></span>Live now</div>' +
-            '<h2 class="ld-title">' + DROP.title + '</h2>' +
-            '<p class="ld-medium mono">' + DROP.medium + '</p>' +
-            '<p class="ld-desc">' + DROP.note + '</p>' +
-            '<div class="ld-buy">' +
-              '<span class="ld-price">' + DROP.price + '</span>' +
-              '<a class="btn" href="' + DROP.link + '">Claim it <span class="arw">\u2192</span></a>' +
-            '</div>' +
-            '<p class="ld-note mono">One piece only \u00B7 first checkout wins</p>' +
-          '</div>' +
-        '</div>';
-    } else {
-      mount.innerHTML =
-        '<div class="ld-dormant">' +
-          '<span class="l mono"><span class="dot"></span>No drop live right now</span>' +
-          '<span class="r2 mono">' +
-            '<a class="r mono" href="#alerts">Get told when the next one lands \u2192</a>' +
-            '<a class="r mono" href="https://shop.lunarystudio.co/" target="_blank" rel="noopener">Shop the store &#8599;</a>' +
-          '</span>' +
-        '</div>';
-    }
+          '<p class="ld-note mono">Live until it sells \u00B7 first checkout wins</p>' +
+        '</div>' +
+      '</div>';
+  } else {
+    mount.innerHTML =
+      '<div class="ld-dormant">' +
+        '<span class="l mono"><span class="dot"></span>No drop live right now</span>' +
+        '<span class="r2 mono">' +
+          '<a class="r mono" href="#alerts">Get told when the next one lands \u2192</a>' +
+          '<a class="r mono" href="https://shop.lunarystudio.co/" target="_blank" rel="noopener">Shop the store \u2197</a>' +
+        '</span>' +
+      '</div>';
   }
+}
 
+function renderGallery(){
   var grid = document.getElementById('galGrid');
   var empty = document.getElementById('galEmpty');
-  if (grid && empty) {
-    if (GALLERY.length) {
-      grid.innerHTML = GALLERY.map(function(g){
-        var cap = '<span class="t">' + g.title + '</span>' + (g.meta ? '<span class="m">' + g.meta + '</span>' : '');
-        var inner = '<span class="frame"><img src="' + g.img + '" alt="' + g.title + '" loading="lazy"></span><span class="cap">' + cap + '</span>';
-        return g.href
-          ? '<a class="gal-item" href="' + g.href + '">' + inner + '</a>'
-          : '<div class="gal-item">' + inner + '</div>';
-      }).join('');
-    } else if (SHOW_PLACEHOLDERS) {
-      var ph = '';
-      for (var i = 1; i <= 6; i++) {
-        var n = ('0' + i).slice(-2);
-        ph += '<div class="gal-item gal-ph">' +
-                '<span class="frame"><span class="num">Photo ' + n + '</span></span>' +
-                '<span class="cap"><span class="t">Piece title</span><span class="m">Drop 00' + i + ' · category</span></span>' +
-              '</div>';
-      }
-      grid.innerHTML = ph;
-      empty.innerHTML = '<p class="gal-ph-note mono">Template placeholders — replace with your own photos in the GALLERY list at the bottom of this file.</p>';
-    } else {
-      grid.style.display = 'none';
-      empty.innerHTML =
-        '<div class="gal-empty">' +
-          '<div class="svgwrap"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="47" fill="none" stroke="rgba(233,227,214,.14)"/><circle cx="50" cy="50" r="30" fill="none" stroke="rgba(233,227,214,.09)"/><circle cx="50" cy="50" r="17" fill="#B4C3AC" opacity=".22"/></svg></div>' +
-          '<div>' +
-            '<span class="mono lbl">Nothing on the walls yet</span>' +
-            '<h3>The gallery fills as pieces leave the studio.</h3>' +
-            '<p>No piece has been finished and released yet, so there is nothing to show \u2014 and nothing here is invented to fill the space. This is where the work will live, one entry at a time, in the order it happened.</p>' +
-            '<a class="txtlink mono" href="#alerts">Get told when the first one lands</a>' +
-          '</div>' +
-        '</div>';
+  if (!grid || !empty) return;
+  if (GALLERY && GALLERY.length) {
+    empty.innerHTML = '';
+    grid.style.display = '';
+    grid.innerHTML = GALLERY.map(function(g){
+      var cap = '<span class="t">' + (g.title || '') + '</span>' +
+                (g.meta ? '<span class="m">' + g.meta + '</span>' : '');
+      var inner = '<span class="frame"><img src="' + g.img + '" alt="' + (g.title || '') + '" loading="lazy"></span>' +
+                  '<span class="cap">' + cap + '</span>';
+      return g.href
+        ? '<a class="gal-item" href="' + g.href + '">' + inner + '</a>'
+        : '<div class="gal-item">' + inner + '</div>';
+    }).join('');
+  } else if (SHOW_PLACEHOLDERS) {
+    var ph = '';
+    for (var i = 1; i <= 6; i++) {
+      var n = ('0' + i).slice(-2);
+      ph += '<div class="gal-item gal-ph">' +
+              '<span class="frame"><span class="num">Photo ' + n + '</span></span>' +
+              '<span class="cap"><span class="t">Piece title</span><span class="m">Drop 00' + i + ' \u00B7 category</span></span>' +
+            '</div>';
     }
+    grid.style.display = '';
+    grid.innerHTML = ph;
+    empty.innerHTML = '<p class="gal-ph-note mono">Template placeholders \u2014 add real pieces in the CMS at /admin.</p>';
+  } else {
+    grid.style.display = 'none';
+    grid.innerHTML = '';
+    empty.innerHTML =
+      '<div class="gal-empty">' +
+        '<div class="svgwrap"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="47" fill="none" stroke="rgba(233,227,214,.14)"/><circle cx="50" cy="50" r="30" fill="none" stroke="rgba(233,227,214,.09)"/><circle cx="50" cy="50" r="17" fill="#B4C3AC" opacity=".22"/></svg></div>' +
+        '<div>' +
+          '<span class="mono lbl">Nothing on the walls yet</span>' +
+          '<h3>The gallery fills as pieces leave the studio.</h3>' +
+          '<p>No piece has been finished and released yet, so there is nothing to show \u2014 and nothing here is invented to fill the space. This is where the work will live, one entry at a time, in the order it happened.</p>' +
+          '<a class="txtlink mono" href="#alerts">Get told when the first one lands</a>' +
+        '</div>' +
+      '</div>';
   }
-})();
+}
+
+renderDrop();
+renderGallery();
+
+/* Content edited in the CMS at /admin is saved to content.json and
+   overrides the fallback values above. Silently keeps the fallback if the
+   file is missing (local preview, first deploy). */
+fetch('content.json', {cache:'no-store'})
+  .then(function(r){ return r.ok ? r.json() : null; })
+  .then(function(d){
+    if (!d) return;
+    if (d.drop) { for (var k in d.drop) { if (d.drop[k] !== null && d.drop[k] !== undefined) DROP[k] = d.drop[k]; } }
+    if (Array.isArray(d.gallery) && d.gallery.length) GALLERY = d.gallery;
+    renderDrop();
+    renderGallery();
+  })
+  .catch(function(){});
 </script>
 <script>
 (function(){

@@ -6,32 +6,34 @@ backend:
 media_folder: "images"
 public_folder: "/images"
 
+site_url: https://lunarystudio.co
+
 collections:
-  - name: page
-    label: "Brand page"
+  - name: site
+    label: "Site content"
     files:
       - name: content
-        label: "Page content"
+        label: "Live drop + gallery"
         file: content.json
         fields:
-          - label: "Homepage headline"
-            name: hero
+          - label: "Live drop"
+            name: drop
             widget: object
             fields:
-              - {label: "Headline", name: title, widget: string}
-              - {label: "Intro paragraph 1", name: lede1, widget: text}
-              - {label: "Intro paragraph 2", name: lede2, widget: text}
-          - label: "Featured note"
-            name: featured
-            widget: object
-            fields:
-              - {label: "Title", name: title, widget: string}
-              - {label: "Summary", name: dek, widget: text}
-          - label: "Journal entries"
-            name: posts
+              - {label: "Is a drop live right now?", name: live, widget: boolean, default: false, hint: "Turn ON when a piece goes on sale. Turn OFF when it sells."}
+              - {label: "Piece title", name: title, widget: string}
+              - {label: "Type + edition", name: medium, widget: string, hint: "e.g. Reclaimed quilt, hand-finished · 1 of 1"}
+              - {label: "Short line", name: note, widget: text, required: false}
+              - {label: "Price", name: price, widget: string, hint: "e.g. $420"}
+              - {label: "Photo", name: image, widget: image, required: false}
+              - {label: "Checkout link", name: link, widget: string, hint: "Paste the exact product URL from the shop"}
+          - label: "Gallery"
+            name: gallery
             widget: list
+            summary: "{{fields.title}}"
+            hint: "Newest first. These are pieces that have already left the studio."
             fields:
-              - {label: "Category + read time", name: cat, widget: string, hint: "e.g. Notes · 6 min"}
+              - {label: "Photo", name: img, widget: image}
               - {label: "Title", name: title, widget: string}
-              - {label: "Summary", name: dek, widget: text}
-              - {label: "Image", name: img, widget: image, required: false}
+              - {label: "Drop + category", name: meta, widget: string, hint: "e.g. Drop 001 · garment"}
+              - {label: "Link (optional)", name: href, widget: string, required: false}
