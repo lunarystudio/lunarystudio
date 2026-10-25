@@ -1159,7 +1159,7 @@ var DROP = {
 */
 /* TEMPLATE MODE — shows six empty photo frames so the layout is complete.
    The moment you add one real entry below, the placeholders switch off. */
-var SHOW_PLACEHOLDERS = true;    /* true = show six empty photo frames (template look). false = public-ready empty state. */
+var SHOW_PLACEHOLDERS = false;    /* true = show six empty photo frames (template look). false = public-ready empty state. */
 
 var GALLERY = [
   /* Paste real pieces here, newest first. One line each, comma at the end:
@@ -1238,7 +1238,7 @@ function renderGallery(){
     }
     grid.style.display = '';
     grid.innerHTML = ph;
-    empty.innerHTML = '<p class="gal-ph-note mono">Template placeholders \u2014 add real pieces in the CMS at /admin.</p>';
+    empty.innerHTML = '<p class="gal-ph-note mono">Placeholder layout</p>';
   } else {
     grid.style.display = 'none';
     grid.innerHTML = '';
@@ -1246,10 +1246,10 @@ function renderGallery(){
       '<div class="gal-empty">' +
         '<div class="svgwrap"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="47" fill="none" stroke="rgba(233,227,214,.14)"/><circle cx="50" cy="50" r="30" fill="none" stroke="rgba(233,227,214,.09)"/><circle cx="50" cy="50" r="17" fill="#B4C3AC" opacity=".22"/></svg></div>' +
         '<div>' +
-          '<span class="mono lbl">Nothing on the walls yet</span>' +
-          '<h3>The gallery fills as pieces leave the studio.</h3>' +
-          '<p>No piece has been finished and released yet, so there is nothing to show \u2014 and nothing here is invented to fill the space. This is where the work will live, one entry at a time, in the order it happened.</p>' +
-          '<a class="txtlink mono" href="#alerts">Get told when the first one lands</a>' +
+          '<span class="mono lbl">Drop 001 \u2014 in the works</span>' +
+          '<h3>One piece at a time, starting with the first.</h3>' +
+          '<p>Nothing has left the bench yet. This page fills the moment a piece is finished \u2014 no earlier, and nothing invented to fill the space in the meantime. The first entry will be the first thing this studio ever sold.</p>' +
+          '<a class="txtlink mono" href="#alerts">Get told when it lands</a>' +
         '</div>' +
       '</div>';
   }
@@ -1258,9 +1258,7 @@ function renderGallery(){
 renderDrop();
 renderGallery();
 
-/* Content edited in the CMS at /admin is saved to content.json and
-   overrides the fallback values above. Silently keeps the fallback if the
-   file is missing (local preview, first deploy). */
+/* content.json, if present, overrides the fallback values above. */
 fetch('content.json', {cache:'no-store'})
   .then(function(r){ return r.ok ? r.json() : null; })
   .then(function(d){
